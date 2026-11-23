@@ -1,0 +1,24 @@
+{
+  "_description": "Preços fixos. PLACEHOLDER: todos os valores a 0 são TODO. Só mudam quando migrar para o PMS (Hostify).",
+  "currency": "EUR",
+  "_currency_description": "Moeda de cotação.",
+  "touristTaxPerPersonPerNight": 0,
+  "_touristTax_description": "TODO: taxa turística municipal por pessoa/noite (por decidir se entra na cotação).",
+  "cleaningFee": 0,
+  "_cleaningFee_description": "TODO: taxa de limpeza fixa por estadia, em EUR.",
+  "minNights": 1,
+  "_minNights_description": "TODO: estadia mínima por defeito (por decidir).",
+  "seasons": [
+    {
+      "id": "baixa",
+      "_description": "TODO: época baixa. Datas em formato MM-DD, inclusivas.",
+      "from": "01-01",
+      "to": "12-31"
+    }
+  ],
+  "rates": {
+    "t2-jardim": { "_description": "TODO: preço por noite em EUR, por id de época.", "baixa": 0 },
+    "suite": { "_description": "TODO: preço por noite em EUR, por id de época.", "baixa": 0 },
+    "t2-terraco": { "_description": "TODO: preço por noite em EUR, por id de época.", "baixa": 0 }
+  }
+}

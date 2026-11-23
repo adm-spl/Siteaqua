@@ -1,0 +1,10 @@
+name = "aquavillae-gateway"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# TODO: criar o namespace (wrangler kv namespace create AVAILABILITY_CACHE) e colar o id.
+# [[kv_namespaces]]
+# binding = "AVAILABILITY_CACHE"
+# id = "TODO"
+
+# Segredos (wrangler secret put): GOOGLE_SERVICE_ACCOUNT_JSON

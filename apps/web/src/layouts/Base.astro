@@ -1,0 +1,19 @@
+---
+const { title, lang = "pt" } = Astro.props;
+---
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root { --verde: #0B231E; --dourado: #C5A059; --creme: #F9F6F0; }
+  body { margin: 0; background: var(--creme); color: var(--verde); font-family: Georgia, serif; }
+  a { color: var(--dourado); }
+  main { max-width: 60rem; margin: 0 auto; padding: 4rem 1.5rem; }
+</style>
