@@ -25,3 +25,20 @@ export type BookingResponse =
   | { kind: "redirect"; url: string };
 
 export interface ApiError { error: string; message: string }
+
+/** Formato de config/units.json (campos `_*` são documentação e ignorados). */
+export interface UnitConfig {
+  id: UnitId; name: Record<Locale, string>; maxGuests: number; bedrooms: number; calendarId: string;
+}
+export interface UnitsConfig { units: UnitConfig[] }
+
+/** Formato de config/pricing.json. Épocas em MM-DD inclusivo; `from > to` atravessa o ano. */
+export interface PricingConfig {
+  currency: string;
+  touristTaxPerPersonPerNight: number;
+  cleaningFee: number;
+  minNights: number;
+  seasons: { id: string; from: string; to: string }[];
+  /** Por unidade e id de época; chaves `_*` (string) são documentação. */
+  rates: Record<UnitId, Record<string, number | string>>;
+}

@@ -1,6 +1,7 @@
 import type { ApiError } from "@aquavillae/contract";
 import { googleCalendarProvider } from "./providers/google-calendar";
 import type { BookingProvider } from "./providers/types";
+import { QuoteError } from "./quote";
 
 const provider: BookingProvider = googleCalendarProvider;
 
@@ -19,6 +20,7 @@ export default {
       }
       return json({ error: "not_found", message: "Rota inexistente" } satisfies ApiError, 404);
     } catch (e) {
+      if (e instanceof QuoteError) return json({ error: e.code, message: e.message } satisfies ApiError, 400);
       return json({ error: "internal", message: (e as Error).message } satisfies ApiError, 500);
     }
   },
