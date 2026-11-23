@@ -1,0 +1,60 @@
+---
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { buildRoutes, unitsFor, chromeFor, alternatesFor, ui, locales, type Route } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const routes = await buildRoutes();
+  return routes.map((route) => ({ params: { lang: route.lang, path: route.path || undefined }, props: { route, routes } }));
+}
+
+const { route, routes } = Astro.props as { route: Route; routes: Route[] };
+const { lang, entry, kind } = route;
+const t = ui[lang];
+const { Content } = await render(entry);
+const unitCards = kind === "home" || kind === "units" ? await unitsFor(lang) : [];
+---
+<Base title={`${entry.data.title} — AquaVillae`} description={entry.data.description} lang={lang}
+  alternates={alternatesFor(routes, route.key)} chrome={chromeFor(routes, lang)}>
+  {kind === "home" ? (
+    <>
+      <section class="hero"><div class="wrap">
+        <h1>{entry.data.title}</h1>
+        <p>{entry.data.description}</p>
+        <a class="btn" href={chromeFor(routes, lang).book.href}>{t.nav.book}</a>
+      </div></section>
+      <section class="wrap prose"><Content /></section>
+    </>
+  ) : (
+    <section class="wrap">
+      <div class="prose">
+        <h1>{entry.data.title}</h1>
+        {kind === "unit" && "highlights" in entry.data && entry.data.highlights.length > 0 && (
+          <>
+            <h2>{t.guestsFeatures}</h2>
+            <ul class="highlights">{entry.data.highlights.map((h) => <li>{h}</li>)}</ul>
+          </>
+        )}
+        <Content />
+      </div>
+      {kind === "unit" && <p><a class="btn" href={chromeFor(routes, lang).book.href}>{t.nav.book}</a></p>}
+    </section>
+  )}
+  {unitCards.length > 0 && (
+    <section class="wrap">
+      {kind === "home" && <h2>{t.nav.units}</h2>}
+      <div class="cards">
+        {unitCards.map(({ entry: u, href }) => (
+          <article class="card">
+            <div class="ph-img" role="img" aria-label="TODO foto">TODO · FOTO</div>
+            <div class="body">
+              <h3>{u.data.title}</h3>
+              <p>{u.data.description}</p>
+              <a class="btn outline" href={href}>{t.seeUnit}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+</Base>
