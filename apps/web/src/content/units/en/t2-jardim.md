@@ -1,5 +1,6 @@
 ---
 key: t2-jardim
+gallery: jardim
 unitId: t2-jardim
 order: 1
 title: Garden 2-Bedroom
@@ -11,5 +12,6 @@ highlights:
   - "Garden"
   - "Up to 4 guests"
 ---
-<!-- TODO: full description (amenities, views, rules, check-in/out): bedrooms, beds, kitchen, amenities, views. -->
-Text to be written.
+A bright, quiet space for up to 4 guests, with an equipped kitchen, linen and towels, Wi‑Fi and parking (simulated).
+
+**Check-in:** from 3 pm. **Check-out:** by 11 am.

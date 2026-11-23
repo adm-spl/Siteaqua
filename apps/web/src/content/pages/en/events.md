@@ -2,6 +2,7 @@
 key: events
 kind: page
 urlPath: events
+image: gastronomia
 title: "Events"
 description: "Private celebrations and corporate events in the Vouga Valley."
 ---

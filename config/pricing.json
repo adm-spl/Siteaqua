@@ -1,24 +1,42 @@
 {
-  "_description": "Preços fixos. PLACEHOLDER: todos os valores a 0 são TODO. Só mudam quando migrar para o PMS (Hostify).",
+  "_description": "MAQUETE: valores SIMULADOS para demonstração. Substituir pelos reais antes de publicar.",
   "currency": "EUR",
   "_currency_description": "Moeda de cotação.",
-  "touristTaxPerPersonPerNight": 0,
+  "touristTaxPerPersonPerNight": 2,
   "_touristTax_description": "TODO: taxa turística municipal por pessoa/noite (por decidir se entra na cotação).",
-  "cleaningFee": 0,
+  "cleaningFee": 30,
   "_cleaningFee_description": "TODO: taxa de limpeza fixa por estadia, em EUR.",
-  "minNights": 1,
+  "minNights": 2,
   "_minNights_description": "TODO: estadia mínima por defeito (por decidir).",
   "seasons": [
     {
+      "id": "alta",
+      "_description": "SIMULADO: verão.",
+      "from": "06-15",
+      "to": "09-15"
+    },
+    {
       "id": "baixa",
-      "_description": "TODO: época baixa. Datas em formato MM-DD, inclusivas.",
-      "from": "01-01",
-      "to": "12-31"
+      "_description": "SIMULADO: resto do ano.",
+      "from": "09-16",
+      "to": "06-14"
     }
   ],
   "rates": {
-    "t2-jardim": { "_description": "TODO: preço por noite em EUR, por id de época.", "baixa": 0 },
-    "suite": { "_description": "TODO: preço por noite em EUR, por id de época.", "baixa": 0 },
-    "t2-terraco": { "_description": "TODO: preço por noite em EUR, por id de época.", "baixa": 0 }
+    "t2-jardim": {
+      "_description": "SIMULADO",
+      "baixa": 45,
+      "alta": 65
+    },
+    "suite": {
+      "_description": "SIMULADO",
+      "baixa": 55,
+      "alta": 80
+    },
+    "t2-terraco": {
+      "_description": "SIMULADO",
+      "baixa": 75,
+      "alta": 110
+    }
   }
 }

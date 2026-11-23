@@ -1,5 +1,6 @@
 ---
 key: t2-terraco
+gallery: terraco
 unitId: t2-terraco
 order: 3
 title: Terrace 2-Bedroom
@@ -11,5 +12,6 @@ highlights:
   - "Terrace"
   - "Up to 4 guests"
 ---
-<!-- TODO: full description (amenities, views, rules, check-in/out): bedrooms, beds, kitchen, amenities, views. -->
-Text to be written.
+A bright, quiet space for up to 4 guests, with an equipped kitchen, linen and towels, Wi‑Fi and parking (simulated).
+
+**Check-in:** from 3 pm. **Check-out:** by 11 am.

@@ -1,7 +1,9 @@
 ---
 import { render } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import { buildRoutes, unitsFor, chromeFor, alternatesFor, ui, locales, type Route } from "../../lib/site";
+import BookingMock from "../../components/BookingMock.astro";
+import { buildRoutes, unitsFor, chromeFor, alternatesFor, ui, type Route } from "../../lib/site";
+import { img, fromPrice, experiences, testimonials, faq, t as mt } from "../../lib/maquete";
 
 export async function getStaticPaths() {
   const routes = await buildRoutes();
@@ -10,35 +12,48 @@ export async function getStaticPaths() {
 
 const { route, routes } = Astro.props as { route: Route; routes: Route[] };
 const { lang, entry, kind } = route;
-const t = ui[lang];
+const t = ui[lang]; const m = mt[lang];
+const chrome = chromeFor(routes, lang);
 const { Content } = await render(entry);
 const unitCards = kind === "home" || kind === "units" ? await unitsFor(lang) : [];
+const gallery = kind === "unit" && "gallery" in entry.data && entry.data.gallery ? [1, 2, 3, 4].map((i) => img(`${entry.data.gallery}-${i}`)) : [];
+const cover = entry.data.image ? img(entry.data.image) : undefined;
+const regionHref = chrome.nav[1].href;
 ---
 <Base title={`${entry.data.title} — AquaVillae`} description={entry.data.description} lang={lang}
-  alternates={alternatesFor(routes, route.key)} chrome={chromeFor(routes, lang)}>
+  alternates={alternatesFor(routes, route.key)} chrome={chrome}>
   {kind === "home" ? (
     <>
-      <section class="hero"><div class="wrap">
+      <section class="hero" style={`--bg:url(${img("hero")})`}><div class="wrap">
         <h1>{entry.data.title}</h1>
         <p>{entry.data.description}</p>
-        <a class="btn" href={chromeFor(routes, lang).book.href}>{t.nav.book}</a>
+        <a class="btn" href={chrome.book.href}>{t.nav.book}</a>
       </div></section>
       <section class="wrap prose"><Content /></section>
     </>
   ) : (
-    <section class="wrap">
-      <div class="prose">
-        <h1>{entry.data.title}</h1>
-        {kind === "unit" && "highlights" in entry.data && entry.data.highlights.length > 0 && (
-          <>
-            <h2>{t.guestsFeatures}</h2>
+    <>
+      {cover && <div class="cover" role="img" aria-label={entry.data.title} style={`background-image:url(${cover})`}></div>}
+      <section class="wrap">
+        <div class="prose">
+          <h1>{entry.data.title}</h1>
+          {kind === "unit" && "highlights" in entry.data && entry.data.highlights.length > 0 && (
             <ul class="highlights">{entry.data.highlights.map((h) => <li>{h}</li>)}</ul>
+          )}
+          {route.key === "book" ? <BookingMock lang={lang} /> : <Content />}
+        </div>
+        {gallery.length > 0 && (
+          <>
+            <h2>{m.gallery}</h2>
+            <div class="gallery">{gallery.map((src) => <img src={src} alt="" loading="lazy" />)}</div>
           </>
         )}
-        <Content />
-      </div>
-      {kind === "unit" && <p><a class="btn" href={chromeFor(routes, lang).book.href}>{t.nav.book}</a></p>}
-    </section>
+        {kind === "unit" && "unitId" in entry.data && fromPrice(entry.data.unitId) && (
+          <p class="price">{m.from} <strong>{fromPrice(entry.data.unitId)} €</strong> {m.night}</p>
+        )}
+        {kind === "unit" && <p><a class="btn" href={chrome.book.href}>{t.nav.book}</a></p>}
+      </section>
+    </>
   )}
   {unitCards.length > 0 && (
     <section class="wrap">
@@ -46,15 +61,38 @@ const unitCards = kind === "home" || kind === "units" ? await unitsFor(lang) : [
       <div class="cards">
         {unitCards.map(({ entry: u, href }) => (
           <article class="card">
-            <div class="ph-img" role="img" aria-label="TODO foto">TODO · FOTO</div>
+            <img class="card-img" src={img(`${u.data.gallery}-1`)} alt={u.data.title} loading="lazy" />
             <div class="body">
               <h3>{u.data.title}</h3>
               <p>{u.data.description}</p>
+              {fromPrice(u.data.unitId) && <p class="price">{m.from} <strong>{fromPrice(u.data.unitId)} €</strong> {m.night}</p>}
               <a class="btn outline" href={href}>{t.seeUnit}</a>
             </div>
           </article>
         ))}
       </div>
     </section>
+  )}
+  {kind === "home" && (
+    <>
+      <section class="band"><div class="wrap split">
+        <img src={img("termas")} alt="" loading="lazy" />
+        <div><h2>{m.regionTitle}</h2><p>{m.regionText}</p><a class="btn" href={regionHref}>{m.regionCta}</a></div>
+      </div></section>
+      <section class="wrap">
+        <h2>{m.exp}</h2>
+        <div class="cards">{experiences[lang].map((x) => (
+          <article class="card"><img class="card-img" src={img(x.image)} alt="" loading="lazy" /><div class="body"><h3>{x.title}</h3><p>{x.text}</p></div></article>
+        ))}</div>
+      </section>
+      <section class="band dark"><div class="wrap">
+        <h2>{m.reviews}</h2>
+        <div class="cards">{testimonials[lang].map((x) => <blockquote><p>“{x.text}”</p><footer>— {x.name}</footer></blockquote>)}</div>
+      </div></section>
+      <section class="wrap prose">
+        <h2>{m.faq}</h2>
+        {faq[lang].map((x) => <details><summary>{x.q}</summary><p>{x.a}</p></details>)}
+      </section>
+    </>
   )}
 </Base>
