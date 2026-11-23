@@ -2,6 +2,7 @@
 key: region
 kind: page
 urlPath: region
+image: montanhas
 title: "The Region"
 description: "The Vouga Valley, Lafões and the Thermal Springs of São Pedro do Sul."
 ---

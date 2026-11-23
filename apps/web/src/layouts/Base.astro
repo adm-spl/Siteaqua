@@ -1,15 +1,26 @@
 ---
-import { ui, locales, type Lang, type Chrome } from "../lib/site";
-interface Props { title: string; description: string; lang: Lang; alternates: Partial<Record<Lang, string>>; chrome: Chrome; }
-const { title, description, lang, alternates, chrome } = Astro.props;
+import "@fontsource/cormorant-garamond/300.css";
+import "@fontsource/cormorant-garamond/300-italic.css";
+import "@fontsource/cormorant-garamond/400.css";
+import "@fontsource/cormorant-garamond/500.css";
+import "@fontsource/jost/300.css";
+import "@fontsource/jost/400.css";
+import "@fontsource/jost/500.css";
+import "../styles/global.css";
+import { ui, locales, contact, type Lang, type Chrome } from "../lib/site";
+import { t as mt } from "../lib/maquete";
+interface Props { title: string; description: string; lang: Lang; alternates: Partial<Record<Lang, string>>; chrome: Chrome; overlay?: boolean; }
+const { title, description, lang, alternates, chrome, overlay = false } = Astro.props;
 const t = ui[lang];
 const other = lang === "pt" ? "en" : "pt";
+const menuLabel = lang === "pt" ? "Menu" : "Menu";
 ---
 <!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0B231E" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
@@ -17,65 +28,50 @@ const other = lang === "pt" ? "en" : "pt";
     <meta property="og:locale" content={lang === "pt" ? "pt_PT" : "en_GB"} />
     {locales.map((l) => alternates[l] && <link rel="alternate" hreflang={l} href={alternates[l]} />)}
     {alternates.pt && <link rel="alternate" hreflang="x-default" href={alternates.pt} />}
+    <script is:inline>document.documentElement.classList.add("js")</script>
   </head>
   <body>
+    <div class="maquete">{mt[lang].banner}</div>
     <a class="skip" href="#main">{t.skip}</a>
-    <header class="site-header">
-      <a class="brand" href={`/${lang}/`}>{t.brand}</a>
-      <nav aria-label="Menu">
-        {chrome.nav.map((n) => <a href={n.href}>{n.label}</a>)}
-      </nav>
-      <div class="header-actions">
-        {alternates[other] && <a class="lang" href={alternates[other]} hreflang={other} lang={other}>{other.toUpperCase()}</a>}
-        <a class="btn" href={chrome.book.href}>{chrome.book.label}</a>
+    <header class:list={["site-header", { overlay }]}>
+      <div class="hd">
+        <nav class="nav" aria-label="Menu">{chrome.nav.slice(0, 3).map((n) => <a href={n.href}>{n.label}</a>)}</nav>
+        <a class="brand" href={`/${lang}/`} aria-label="AquaVillae">Aqua<span>Villae</span></a>
+        <div class="hd-r">
+          <nav class="nav" aria-label="Menu 2">{chrome.nav.slice(3).map((n) => <a href={n.href}>{n.label}</a>)}</nav>
+          {alternates[other] && <a class="lang" href={alternates[other]} hreflang={other} lang={other}>{other.toUpperCase()}</a>}
+          <a class="btn" href={chrome.book.href}>{chrome.book.label}</a>
+          <details class="menu">
+            <summary>{menuLabel}</summary>
+            <nav aria-label="Menu mobile">
+              {chrome.nav.map((n) => <a href={n.href}>{n.label}</a>)}
+              <a href={chrome.book.href}>{chrome.book.label}</a>
+            </nav>
+          </details>
+        </div>
       </div>
     </header>
     <main id="main"><slot /></main>
     <footer class="site-footer">
-      <p class="brand">{t.brand}</p>
-      <p>{t.tagline}</p>
-      <p>{chrome.footer.map((n) => <a href={n.href}>{n.label}</a>)}</p>
-      <p class="small">© {new Date().getFullYear()} {t.brand}. {t.footer.rights}</p>
+      <div class="ft">
+        <div>
+          <a class="brand" href={`/${lang}/`}>Aqua<span>Villae</span></a>
+          <p>{t.tagline}</p>
+          <p>{contact.address}</p>
+        </div>
+        <div><h4>{lang === "pt" ? "Explorar" : "Explore"}</h4>
+          <ul>{chrome.nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul></div>
+        <div><h4>{lang === "pt" ? "Informação" : "Information"}</h4>
+          <ul>{chrome.footer.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul></div>
+      </div>
+      <div class="copy"><span>© {new Date().getFullYear()} AquaVillae. {t.footer.rights}</span><span>{lang === "pt" ? "Registo AL: em processo de licenciamento" : "AL registration: pending"}</span></div>
     </footer>
+    <script>
+      const els = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
+        els.forEach((el) => io.observe(el));
+      } else els.forEach((el) => el.classList.add("in"));
+    </script>
   </body>
 </html>
-<style is:global>
-  :root { --verde: #0B231E; --verde-2: #12352d; --dourado: #C5A059; --creme: #F9F6F0; --texto: #0B231E; --suave: #4a5a55; --max: 68rem; }
-  *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--creme); color: var(--texto); font-family: Georgia, "Times New Roman", serif; line-height: 1.7; font-size: 1.0625rem; }
-  h1, h2, h3 { font-weight: 400; line-height: 1.2; letter-spacing: .01em; }
-  h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 0 0 1rem; }
-  h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 2.5rem 0 1rem; }
-  a { color: inherit; text-decoration-color: var(--dourado); text-underline-offset: .25em; }
-  a:focus-visible { outline: 2px solid var(--dourado); outline-offset: 3px; }
-  .skip { position: absolute; left: -999px; } .skip:focus { left: 1rem; top: 1rem; background: var(--creme); padding: .5rem 1rem; z-index: 10; }
-  .site-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.25rem clamp(1rem, 4vw, 3rem); background: var(--verde); color: var(--creme); }
-  .site-header .brand { font-size: 1.4rem; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; color: var(--dourado); }
-  .site-header nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .site-header nav a { text-decoration: none; letter-spacing: .08em; font-size: .95rem; }
-  .site-header nav a:hover { color: var(--dourado); }
-  .header-actions { display: flex; gap: 1rem; align-items: center; }
-  .lang { border: 1px solid var(--dourado); padding: .2rem .6rem; text-decoration: none; font-size: .85rem; letter-spacing: .1em; }
-  .btn { display: inline-block; background: var(--dourado); color: var(--verde); padding: .7rem 1.6rem; text-decoration: none; letter-spacing: .1em; text-transform: uppercase; font-size: .85rem; }
-  .btn:hover { background: var(--creme); }
-  .btn.outline { background: transparent; color: var(--verde); border: 1px solid var(--verde); }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 3rem clamp(1rem, 4vw, 2rem); }
-  .hero { background: linear-gradient(160deg, var(--verde) 0%, var(--verde-2) 100%); color: var(--creme); }
-  .hero .wrap { padding-block: clamp(4rem, 12vw, 8rem); }
-  .hero p { max-width: 38rem; color: #dfd9c9; }
-  .ph-img { aspect-ratio: 4 / 3; background: linear-gradient(135deg, #d9d2bf, #bfb596); display: grid; place-items: center; color: var(--suave); font-size: .85rem; letter-spacing: .1em; }
-  .cards { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); margin-top: 2rem; }
-  .card { background: #fff; border: 1px solid #e6dfce; display: flex; flex-direction: column; }
-  .card .body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; gap: .75rem; flex: 1; }
-  .card h3 { margin: 0; font-size: 1.35rem; }
-  .card p { margin: 0; color: var(--suave); }
-  .prose { max-width: 42rem; } .prose h2 { margin-top: 2rem; }
-  .highlights { list-style: none; padding: 0; display: grid; gap: .5rem; }
-  .highlights li::before { content: "◆"; color: var(--dourado); margin-right: .75rem; font-size: .7rem; }
-  .site-footer { background: var(--verde); color: var(--creme); text-align: center; padding: 3rem 1rem; }
-  .site-footer .brand { color: var(--dourado); letter-spacing: .18em; text-transform: uppercase; margin: 0; }
-  .site-footer p { margin: .25rem 0; } .site-footer .small { font-size: .8rem; opacity: .7; margin-top: 1.5rem; }
-  .site-footer a { margin: 0 .75rem; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-</style>

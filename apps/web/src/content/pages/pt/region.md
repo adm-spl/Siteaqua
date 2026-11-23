@@ -2,6 +2,7 @@
 key: region
 kind: page
 urlPath: regiao
+image: montanhas
 title: "A Região"
 description: "Vale do Vouga, Lafões e as Termas de São Pedro do Sul."
 ---

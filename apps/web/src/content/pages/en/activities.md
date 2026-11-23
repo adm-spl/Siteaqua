@@ -2,6 +2,7 @@
 key: activities
 kind: page
 urlPath: activities
+image: trilhos
 title: "Activities"
 description: "Trails, canyoning and kayaking in the Vouga Valley."
 ---

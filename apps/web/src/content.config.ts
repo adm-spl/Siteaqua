@@ -2,7 +2,7 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 // `key` liga a mesma página entre idiomas (hreflang + seletor PT/EN).
-const common = z.object({ key: z.string(), title: z.string(), description: z.string() });
+const common = z.object({ key: z.string(), title: z.string(), description: z.string(), image: z.string().optional() });
 
 const pages = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/pages" }),
@@ -15,6 +15,7 @@ const pages = defineCollection({
 const units = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/units" }),
   schema: common.extend({
+    gallery: z.string().optional(), // prefixo das imagens em /maquete
     unitId: z.string(), // tem de existir em config/units.json
     order: z.number(),
     highlights: z.array(z.string()).default([]),

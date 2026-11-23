@@ -5,5 +5,6 @@ urlPath: ""
 title: Descanso junto às Termas
 description: Três alojamentos de charme em São Pedro do Sul, a poucos passos das águas termais.
 ---
-<!-- TODO: texto de boas-vindas (2–3 parágrafos): localização, ambiente, o que torna a estadia especial. -->
-Rascunho: bem-vindo à AquaVillae, um refúgio tranquilo junto às Termas de São Pedro do Sul.
+A AquaVillae nasce junto às Termas de São Pedro do Sul, no coração do Vale do Vouga. Três alojamentos pensados para quem procura silêncio, conforto e natureza.
+
+De manhã, um passeio pelas nascentes; à tarde, o terraço ou o jardim; ao fim do dia, o jantar com sabores de Lafões. Aqui, o descanso é o programa.

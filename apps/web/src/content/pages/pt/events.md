@@ -2,6 +2,7 @@
 key: events
 kind: page
 urlPath: eventos
+image: gastronomia
 title: "Eventos"
 description: "Celebrações privadas e eventos de empresa no Vale do Vouga."
 ---

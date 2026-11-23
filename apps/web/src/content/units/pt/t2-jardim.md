@@ -1,5 +1,6 @@
 ---
 key: t2-jardim
+gallery: jardim
 unitId: t2-jardim
 order: 1
 title: T2 Jardim
@@ -11,5 +12,6 @@ highlights:
   - "Jardim"
   - "Até 4 pessoas"
 ---
-<!-- TODO: descrição completa (amenities, vistas, regras, check-in/out): quartos, camas, cozinha, comodidades, vistas. -->
-Texto por redigir.
+Um espaço luminoso e sossegado para até 4 pessoas, com cozinha equipada, roupa de cama e toalhas, Wi‑Fi e estacionamento (simulado).
+
+**Check-in:** a partir das 15h. **Check-out:** até às 11h.
