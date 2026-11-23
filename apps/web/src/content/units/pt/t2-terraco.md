@@ -3,11 +3,13 @@ key: t2-terraco
 unitId: t2-terraco
 order: 3
 title: T2 Terraço
-description: "TODO descrição curta (1 frase) do alojamento."
+description: "T2 com terraço, junto às Termas de São Pedro do Sul."
 highlights:
-  - "TODO destaque 1 (ex.: jardim privado)"
-  - "TODO destaque 2"
-  - "TODO destaque 3"
+  - "2 quartos de casal"
+  - "2 casas de banho"
+  - "Cozinha"
+  - "Terraço"
+  - "Até 4 pessoas"
 ---
-<!-- TODO: descrição completa: quartos, camas, cozinha, comodidades, vistas. -->
+<!-- TODO: descrição completa (amenities, vistas, regras, check-in/out): quartos, camas, cozinha, comodidades, vistas. -->
 Texto por redigir.

@@ -4,29 +4,41 @@
     {
       "id": "t2-jardim",
       "_description": "T2 com acesso ao jardim. TODO: confirmar nome comercial.",
-      "name": { "pt": "T2 Jardim", "en": "Garden 2-Bedroom" },
-      "maxGuests": 0,
+      "name": {
+        "pt": "T2 Jardim",
+        "en": "Garden 2-Bedroom"
+      },
+      "maxGuests": 4,
       "bedrooms": 2,
       "calendarId": "TODO-google-calendar-id-t2-jardim@group.calendar.google.com",
-      "_calendarId_description": "ID do Google Calendar desta unidade (Definições do calendário > Integrar calendário). Partilhar com a service account."
+      "_calendarId_description": "ID do Google Calendar desta unidade (Definições do calendário > Integrar calendário). Partilhar com a service account.",
+      "_maxGuests_description": "Capacidade máxima (1–4 segundo o site anterior; confirmar)."
     },
     {
       "id": "suite",
       "_description": "Suite. TODO: confirmar nome comercial.",
-      "name": { "pt": "Suite", "en": "Suite" },
-      "maxGuests": 0,
+      "name": {
+        "pt": "Suite",
+        "en": "Suite"
+      },
+      "maxGuests": 4,
       "bedrooms": 1,
       "calendarId": "TODO-google-calendar-id-suite@group.calendar.google.com",
-      "_calendarId_description": "ID do Google Calendar desta unidade."
+      "_calendarId_description": "ID do Google Calendar desta unidade.",
+      "_maxGuests_description": "Capacidade máxima (1–4 segundo o site anterior; confirmar)."
     },
     {
       "id": "t2-terraco",
       "_description": "T2 com terraço. TODO: confirmar nome comercial.",
-      "name": { "pt": "T2 Terraço", "en": "Terrace 2-Bedroom" },
-      "maxGuests": 0,
+      "name": {
+        "pt": "T2 Terraço",
+        "en": "Terrace 2-Bedroom"
+      },
+      "maxGuests": 4,
       "bedrooms": 2,
       "calendarId": "TODO-google-calendar-id-t2-terraco@group.calendar.google.com",
-      "_calendarId_description": "ID do Google Calendar desta unidade."
+      "_calendarId_description": "ID do Google Calendar desta unidade.",
+      "_maxGuests_description": "Capacidade máxima (1–4 segundo o site anterior; confirmar)."
     }
   ]
 }

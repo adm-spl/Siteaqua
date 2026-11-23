@@ -3,11 +3,13 @@ key: suite
 unitId: suite
 order: 2
 title: Suite
-description: "TODO descrição curta (1 frase) do alojamento."
+description: "Suite com cama King Size, junto às Termas de São Pedro do Sul."
 highlights:
-  - "TODO destaque 1 (ex.: jardim privado)"
-  - "TODO destaque 2"
-  - "TODO destaque 3"
+  - "1 cama King Size"
+  - "Sofá-cama"
+  - "1 casa de banho"
+  - "Cozinha"
+  - "Até 4 pessoas"
 ---
-<!-- TODO: descrição completa: quartos, camas, cozinha, comodidades, vistas. -->
+<!-- TODO: descrição completa (amenities, vistas, regras, check-in/out): quartos, camas, cozinha, comodidades, vistas. -->
 Texto por redigir.

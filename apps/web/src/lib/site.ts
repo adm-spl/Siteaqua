@@ -7,16 +7,16 @@ export const ui = {
   pt: {
     brand: "AquaVillae", tagline: "Alojamento Local · São Pedro do Sul",
     unitsPath: "alojamentos", bookPath: "reservar",
-    nav: { units: "Alojamentos", thermal: "Termas", contact: "Contactos", book: "Reservar" },
+    nav: { units: "Alojamentos", region: "Região", activities: "Atividades", events: "Eventos", contact: "Contactos", book: "Reservar" },
     skip: "Saltar para o conteúdo", seeUnit: "Ver alojamento", guestsFeatures: "Destaques",
-    footer: { privacy: "Privacidade", rights: "Todos os direitos reservados." },
+    footer: { privacy: "Privacidade", complaints: "Livro de Reclamações", rights: "Todos os direitos reservados." },
   },
   en: {
     brand: "AquaVillae", tagline: "Holiday Rentals · São Pedro do Sul",
     unitsPath: "accommodation", bookPath: "book",
-    nav: { units: "Accommodation", thermal: "Thermal Springs", contact: "Contact", book: "Book" },
+    nav: { units: "Accommodation", region: "The Region", activities: "Activities", events: "Events", contact: "Contact", book: "Book" },
     skip: "Skip to content", seeUnit: "View accommodation", guestsFeatures: "Highlights",
-    footer: { privacy: "Privacy", rights: "All rights reserved." },
+    footer: { privacy: "Privacy", complaints: "Complaints Book", rights: "All rights reserved." },
   },
 } as const;
 
@@ -53,6 +53,15 @@ export async function unitsFor(lang: Lang) {
 export const hrefFor = (routes: Route[], lang: Lang, key: string) =>
   routes.find((r) => r.lang === lang && r.key === key)?.href ?? `/${lang}/`;
 
+/** Contactos públicos (fonte: site anterior; confirmar). Email e mapa em falta. */
+export const contact = {
+  address: "Rua Principal do Cadaval 470, 3660-684 São Pedro do Sul",
+  whatsappUrl: "https://wa.me/351967333926",
+  phone: "+351 967 333 926",
+  instagram: "https://www.instagram.com/aquavillae",
+  complaintsBook: "https://www.livroreclamacoes.pt/",
+};
+
 export interface Chrome {
   nav: { href: string; label: string }[];
   book: { href: string; label: string };
@@ -65,11 +74,18 @@ export function chromeFor(routes: Route[], lang: Lang): Chrome {
   return {
     nav: [
       { href: hrefFor(routes, lang, "units"), label: t.nav.units },
-      { href: hrefFor(routes, lang, "thermal"), label: t.nav.thermal },
+      { href: hrefFor(routes, lang, "region"), label: t.nav.region },
+      { href: hrefFor(routes, lang, "activities"), label: t.nav.activities },
+      { href: hrefFor(routes, lang, "events"), label: t.nav.events },
       { href: hrefFor(routes, lang, "contact"), label: t.nav.contact },
     ],
     book: { href: hrefFor(routes, lang, "book"), label: t.nav.book },
-    footer: [{ href: hrefFor(routes, lang, "privacy"), label: t.footer.privacy }],
+    footer: [
+      { href: hrefFor(routes, lang, "privacy"), label: t.footer.privacy },
+      { href: contact.complaintsBook, label: t.footer.complaints },
+      { href: contact.whatsappUrl, label: "WhatsApp" },
+      { href: contact.instagram, label: "Instagram" },
+    ],
   };
 }
 
