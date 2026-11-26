@@ -1,7 +1,0 @@
-{
-  "name": "@aquavillae/gateway", "version": "0.0.0", "private": true, "type": "module",
-  "scripts": { "dev": "wrangler dev", "deploy": "wrangler deploy",
-    "test": "node --test src/quote.test.ts" },
-  "dependencies": { "@aquavillae/contract": "*" },
-  "devDependencies": { "wrangler": "^4.0.0", "@cloudflare/workers-types": "^4.20250101.0" }
-}

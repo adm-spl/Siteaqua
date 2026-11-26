@@ -1,0 +1,11 @@
+# Cabeçalhos para Cloudflare (Pages ou Workers com ficheiros estáticos).
+# Se acrescentares um serviço externo (estatísticas, mapa incorporado), é preciso autorizá-lo na CSP.
+/*
+  Content-Security-Policy: default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self' blob:; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+/assets/*
+  Cache-Control: public, max-age=86400
