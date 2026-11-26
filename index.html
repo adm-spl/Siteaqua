@@ -39,7 +39,7 @@ img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 h1,h2,h3,p{margin:0}
 h2,h3{font-family:var(--serif);font-weight:400;text-wrap:balance}
-h2{font-size:clamp(32px,4.2vw,56px);line-height:1.1;letter-spacing:-.01em}
+h2{overflow-wrap:break-word;hyphens:auto;font-size:clamp(30px,4.2vw,56px);line-height:1.1;letter-spacing:-.01em}
 h3{font-size:clamp(22px,2vw,26px);line-height:1.2}
 p{text-wrap:pretty}
 :focus-visible{outline:2px solid var(--green);outline-offset:3px}
@@ -63,6 +63,8 @@ p{text-wrap:pretty}
 .top .ib:hover{background:rgba(24,26,25,.75)}
 .top.past-hero .ib{background:var(--white);border-color:var(--line);color:var(--ink);box-shadow:0 2px 14px rgba(31,36,33,.14)}
 .right{display:flex;gap:6px}
+.ib.lang{width:auto;min-width:64px;padding:0 10px;border-radius:99px;appearance:auto;font:600 14px var(--sans);text-align:center}
+.lang option{color:var(--ink);background:var(--white)}
 
 /* Menu e formulário */
 dialog{padding:0;border:0;background:var(--white);color:var(--ink);overflow:auto;overscroll-behavior:contain}
@@ -132,10 +134,7 @@ dialog::backdrop{background:rgba(63,86,66,.45)}
 .list li>:not(.shot){margin-inline:10px}
 .list p{color:var(--soft)}
 .list .btn{margin-top:auto}
-/* Moldura reservada: quando houver fotografia, substituir o conteúdo por <img> */
-.shot{align-self:stretch;display:grid;place-content:center;justify-items:center;gap:8px;aspect-ratio:16/10;overflow:hidden;border:1px dashed rgba(45,90,67,.45);border-radius:10px;background:var(--sage);color:var(--green-dark);font-size:14px}
-.shot svg{width:32px;height:32px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linejoin:round}
-.shot:has(img){display:block;position:relative;border:0}
+.shot{position:relative;align-self:stretch;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--sage)}
 .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .note{max-width:64ch;margin-top:24px;font-size:15px;color:var(--soft)}
 .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
@@ -179,145 +178,145 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 </head>
 <body>
 <header class="top" id="top">
-  <button class="ib" id="menuBtn" type="button" aria-label="Abrir menu" aria-haspopup="dialog">
+  <button class="ib" id="menuBtn" type="button" aria-label="Abrir menu" data-i18n-aria-label="menuOpen" aria-haspopup="dialog">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
   </button>
   <div class="right">
-    <a class="ib" href="https://wa.me/351967333926" target="_blank" rel="noopener noreferrer" aria-label="Falar por WhatsApp">
+    <select class="ib lang" id="lang" aria-label="Idioma" data-i18n-aria-label="lang">
+      <option value="pt" lang="pt">PT</option><option value="en" lang="en">EN</option><option value="fr" lang="fr">FR</option><option value="es" lang="es">ES</option><option value="de" lang="de">DE</option>
+    </select>
+    <a class="ib" href="https://wa.me/351967333926" target="_blank" rel="noopener noreferrer" aria-label="Falar por WhatsApp" data-i18n-aria-label="waTalk">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2z"/><path d="M9 8.3c.1 2.3 2.4 4.9 5 5.8l1.3-1.1-1.9-.9-.8.7c-.8-.4-1.8-1.4-2.2-2.2l.7-.8-.9-1.9z"/></svg>
     </a>
-    <a class="ib" id="ig" target="_blank" rel="noopener noreferrer" aria-label="Instagram do AquaTurismo" hidden>
+    <a class="ib" id="ig" target="_blank" rel="noopener noreferrer" aria-label="Instagram do AquaTurismo" data-i18n-aria-label="igAria" hidden>
       <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".6"/></svg>
     </a>
   </div>
 </header>
 
-<dialog class="panel" id="panel" aria-label="Menu principal">
+<dialog class="panel" id="panel" aria-label="Menu principal" data-i18n-aria-label="menuMain">
   <nav>
-    <button class="ib" id="closeBtn" type="button" aria-label="Fechar menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <a href="#casa">A Casa</a>
-    <a href="#exterior">Exterior &amp; Piscina</a>
-    <a href="#interiores">Interiores</a>
-    <a href="#atividades">Atividades na Região</a>
-    <a href="#localizacao">Localização</a>
-    <a href="#reservar">Tarifas</a>
-    <button type="button" data-stay>Fazer reserva</button>
+    <button class="ib" id="closeBtn" type="button" aria-label="Fechar menu" data-i18n-aria-label="menuClose"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <a href="#casa" data-i18n="navHouse">A Casa</a>
+    <a href="#exterior" data-i18n="navOutdoor">Exterior &amp; Piscina</a>
+    <a href="#interiores" data-i18n="navIndoor">Interiores</a>
+    <a href="#atividades" data-i18n="navActivities">Atividades na Região</a>
+    <a href="#localizacao" data-i18n="navLocation">Localização</a>
+    <a href="#reservar" data-i18n="navRates">Tarifas</a>
+    <button type="button" data-stay data-i18n="book">Fazer reserva</button>
   </nav>
 </dialog>
 
 <main>
 <section class="hero-run" id="topo" aria-label="AquaTurismo">
   <div class="stage">
-    <img id="poster" src="assets/hero-poster.jpg" width="1920" height="1080" fetchpriority="high" alt="Piscina, relvado, espigueiro e casa de pedra ao entardecer, em Calvos, Vouzela">
+    <img id="poster" src="assets/hero-poster.jpg" width="1920" height="1080" fetchpriority="high" alt="Piscina, relvado, espigueiro e casa de pedra ao entardecer, em Calvos, Vouzela" data-i18n-alt="heroAlt">
     <video id="vid" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
     <div class="copy">
       <h1>AquaTurismo</h1>
-      <p>Casa de pedra com piscina em Calvos, Vouzela</p>
-      <button class="btn" type="button" data-stay>Fazer reserva</button>
+      <p data-i18n="heroSub">Casa de pedra com piscina em Calvos, Vouzela</p>
+      <button class="btn" type="button" data-stay data-i18n="book">Fazer reserva</button>
     </div>
-    <div class="hint" id="hint">desce para entrar</div>
+    <div class="hint" id="hint" data-i18n="hint">desce para entrar</div>
   </div>
 </section>
 
 <section class="sec" id="casa">
   <div class="wrap">
-    <h2>Uma casa de pedra, com piscina e jardim só para quem fica.</h2>
-    <p class="lead">O AquaTurismo é uma casa de férias em Calvos, no concelho de Vouzela. Paredes de pedra, um espigueiro tradicional, relvado à volta da piscina e um espaço exterior vedado, num sossego rural a poucos minutos das Termas de São Pedro do Sul.</p>
+    <h2 data-i18n="houseTitle">Uma casa de pedra, com piscina e jardim só para quem fica.</h2>
+    <p class="lead" data-i18n="houseLead">O AquaTurismo é uma casa de férias em Calvos, no concelho de Vouzela. Paredes de pedra, um espigueiro tradicional, relvado à volta da piscina e um espaço exterior vedado, num sossego rural a poucos minutos das Termas de São Pedro do Sul.</p>
     <dl class="facts">
-      <div><dt>Piscina exterior</dt><dd>Junto ao relvado, dentro do espaço vedado.</dd></div>
-      <div><dt>Exterior vedado</dt><dd>Muros à volta do jardim, para famílias e animais.</dd></div>
-      <div><dt>Churrasqueira</dt><dd>Para refeições ao ar livre.</dd></div>
-      <div><dt>Ar condicionado</dt><dd>Na sala e no quarto.</dd></div>
-      <div><dt>Wi-Fi gratuito</dt><dd>Incluído na estadia.</dd></div>
-      <div><dt>Animais aceites</dt><dd>Aceitamos animais de estimação.</dd></div>
-      <div><dt>Cama de casal insuflável</dt><dd>Disponível sob pedido prévio.</dd></div>
-      <div><dt>Berço para bebés</dt><dd>Disponível sob pedido prévio.</dd></div>
+      <div><dt data-i18n="f1t">Piscina exterior</dt><dd data-i18n="f1d">Junto ao relvado, dentro do espaço vedado.</dd></div>
+      <div><dt data-i18n="f2t">Exterior vedado</dt><dd data-i18n="f2d">Muros à volta do jardim, para famílias e animais.</dd></div>
+      <div><dt data-i18n="f3t">Churrasqueira</dt><dd data-i18n="f3d">Para refeições ao ar livre.</dd></div>
+      <div><dt data-i18n="f4t">Ar condicionado</dt><dd data-i18n="f4d">Na sala e no quarto.</dd></div>
+      <div><dt data-i18n="f5t">Wi-Fi gratuito</dt><dd data-i18n="f5d">Incluído na estadia.</dd></div>
+      <div><dt data-i18n="f6t">Animais aceites</dt><dd data-i18n="f6d">Aceitamos animais de estimação.</dd></div>
+      <div><dt data-i18n="f7t">Cama de casal insuflável</dt><dd data-i18n="f7d">Disponível sob pedido prévio.</dd></div>
+      <div><dt data-i18n="f8t">Berço para bebés</dt><dd data-i18n="f7d">Disponível sob pedido prévio.</dd></div>
     </dl>
   </div>
 </section>
 
 <section class="sec" id="exterior">
   <div class="wrap">
-    <h2>A piscina, o relvado e o espigueiro.</h2>
-    <p class="lead">O exterior é o centro da estadia: a piscina rodeada de relva, a casa de pedra com o espigueiro, a ramada de sombra e as noites com a água iluminada.</p>
+    <h2 data-i18n="outTitle">A piscina, o relvado e o espigueiro.</h2>
+    <p class="lead" data-i18n="outLead">O exterior é o centro da estadia: a piscina rodeada de relva, a casa de pedra com o espigueiro, a ramada de sombra e as noites com a água iluminada.</p>
     <div class="gal">
-      <figure class="set" style="--span:7;--ratio:16/10"><div class="ph"><img src="assets/exterior-relvado.jpg" width="1600" height="899" loading="lazy" alt="Relvado e piscina vistos do jardim vedado, com a casa de pedra ao fundo"></div><figcaption>O jardim relvado e a piscina, entre muros brancos.</figcaption></figure>
-      <figure style="--span:5;--small:4/5"><div class="ph"><img src="assets/piscina-noite.jpg" width="900" height="1602" loading="lazy" style="object-position:50% 68%" alt="Piscina iluminada à noite, com o espigueiro e a casa de pedra"></div><figcaption>A piscina à noite.</figcaption></figure>
-      <figure style="--span:5"><div class="ph"><img src="assets/ramada.jpg" width="1600" height="899" loading="lazy" alt="Ramada com folhagem ao longo da parede de pedra da casa"></div><figcaption>A ramada ao longo da casa, com sombra de folhagem.</figcaption></figure>
-      <figure class="set" style="--span:7;--ratio:16/10"><div class="ph"><img src="assets/casa-espigueiro.jpg" width="1600" height="899" loading="lazy" alt="Casa de pedra, espigueiro e piscina ao pôr do sol"></div><figcaption>A casa de pedra, o espigueiro e a piscina ao pôr do sol.</figcaption></figure>
+      <figure class="set" style="--span:7;--ratio:16/10"><div class="ph"><img src="assets/exterior-relvado.jpg" width="1600" height="899" loading="lazy" alt="Relvado e piscina vistos do jardim vedado, com a casa de pedra ao fundo" data-i18n-alt="a1"></div><figcaption data-i18n="c1">O jardim relvado e a piscina, entre muros brancos.</figcaption></figure>
+      <figure style="--span:5;--small:4/5"><div class="ph"><img src="assets/piscina-noite.jpg" width="900" height="1602" loading="lazy" style="object-position:50% 68%" alt="Piscina iluminada à noite, com o espigueiro e a casa de pedra" data-i18n-alt="a2"></div><figcaption data-i18n="c2">A piscina à noite.</figcaption></figure>
+      <figure style="--span:5"><div class="ph"><img src="assets/ramada.jpg" width="1600" height="899" loading="lazy" alt="Ramada com folhagem ao longo da parede de pedra da casa" data-i18n-alt="a3"></div><figcaption data-i18n="c3">A ramada ao longo da casa, com sombra de folhagem.</figcaption></figure>
+      <figure class="set" style="--span:7;--ratio:16/10"><div class="ph"><img src="assets/casa-espigueiro.jpg" width="1600" height="899" loading="lazy" alt="Casa de pedra, espigueiro e piscina ao pôr do sol" data-i18n-alt="a4"></div><figcaption data-i18n="c4">A casa de pedra, o espigueiro e a piscina ao pôr do sol.</figcaption></figure>
     </div>
   </div>
 </section>
 
 <section class="sec" id="interiores">
   <div class="wrap">
-    <h2>Dentro, a pedra mantém-se à vista.</h2>
-    <p class="lead">Sala com cozinha equipada, quarto com cama de casal e casa de banho com duche. A sala e o quarto têm ar condicionado. Disponibilizamos cama de casal insuflável e berço para bebés, mediante pedido prévio.</p>
+    <h2 data-i18n="inTitle">Dentro, a pedra mantém-se à vista.</h2>
+    <p class="lead" data-i18n="inLead">Sala com cozinha equipada, quarto com cama de casal e casa de banho com duche. A sala e o quarto têm ar condicionado. Disponibilizamos cama de casal insuflável e berço para bebés, mediante pedido prévio.</p>
     <div class="gal">
-      <figure class="set" style="--span:8;--ratio:16/10"><div class="ph"><img src="assets/sala-pedra.jpg" width="1600" height="899" loading="lazy" alt="Sala com parede de pedra, televisão, cadeiras e ar condicionado"></div><figcaption>Sala com parede de pedra e ar condicionado.</figcaption></figure>
-      <figure class="tall" style="--span:4;--small:4/5"><div class="ph"><img src="assets/cozinha-sala.jpg" width="1000" height="1338" loading="lazy" style="object-position:50% 75%" alt="Cozinha equipada e zona de estar com sofá e mesa de centro"></div><figcaption>Cozinha equipada e zona de estar.</figcaption></figure>
-      <figure class="set" style="--span:8;--ratio:16/10"><div class="ph"><img src="assets/quarto.jpg" width="1600" height="899" loading="lazy" alt="Quarto com cama de casal, mesas de cabeceira e roupeiro"></div><figcaption>Quarto com cama de casal e roupeiro.</figcaption></figure>
-      <figure class="set" style="--span:6;--ratio:4/5;--small:4/5"><div class="ph"><img src="assets/mesa-janela.jpg" width="900" height="1602" loading="lazy" style="object-position:50% 60%" alt="Mesa posta junto a uma janela de pedra virada para a ramada"></div><figcaption>Mesa junto à janela, virada para a ramada.</figcaption></figure>
-      <figure class="set" style="--span:6;--ratio:4/5;--small:4/5"><div class="ph"><img src="assets/casa-de-banho.jpg" width="1000" height="1338" loading="lazy" alt="Casa de banho com lavatório suspenso, espelho e duche com porta de vidro"></div><figcaption>Casa de banho com duche.</figcaption></figure>
+      <figure class="set" style="--span:8;--ratio:16/10"><div class="ph"><img src="assets/sala-pedra.jpg" width="1600" height="899" loading="lazy" alt="Sala com parede de pedra, televisão, cadeiras e ar condicionado" data-i18n-alt="a5"></div><figcaption data-i18n="c5">Sala com parede de pedra e ar condicionado.</figcaption></figure>
+      <figure class="tall" style="--span:4;--small:4/5"><div class="ph"><img src="assets/cozinha-sala.jpg" width="1000" height="1338" loading="lazy" style="object-position:50% 75%" alt="Cozinha equipada e zona de estar com sofá e mesa de centro" data-i18n-alt="a6"></div><figcaption data-i18n="c6">Cozinha equipada e zona de estar.</figcaption></figure>
+      <figure class="set" style="--span:8;--ratio:16/10"><div class="ph"><img src="assets/quarto.jpg" width="1600" height="899" loading="lazy" alt="Quarto com cama de casal, mesas de cabeceira e roupeiro" data-i18n-alt="a7"></div><figcaption data-i18n="c7">Quarto com cama de casal e roupeiro.</figcaption></figure>
+      <figure class="set" style="--span:6;--ratio:4/5;--small:4/5"><div class="ph"><img src="assets/mesa-janela.jpg" width="900" height="1602" loading="lazy" style="object-position:50% 60%" alt="Mesa posta junto a uma janela de pedra virada para a ramada" data-i18n-alt="a8"></div><figcaption data-i18n="c8">Mesa junto à janela, virada para a ramada.</figcaption></figure>
+      <figure class="set" style="--span:6;--ratio:4/5;--small:4/5"><div class="ph"><img src="assets/casa-de-banho.jpg" width="1000" height="1338" loading="lazy" alt="Casa de banho com lavatório suspenso, espelho e duche com porta de vidro" data-i18n-alt="a9"></div><figcaption data-i18n="c9">Casa de banho com duche.</figcaption></figure>
     </div>
   </div>
 </section>
 
 <section class="sec" id="atividades">
   <div class="wrap">
-    <h2>Trilhos, água e montanha.</h2>
-    <p class="lead">Quatro propostas na serra e nos rios da zona. Pedes aqui e confirmamos por WhatsApp o local, o horário e as condições.</p>
+    <h2 data-i18n="actTitle">Trilhos, água e montanha.</h2>
+    <p class="lead" data-i18n="actLead">Quatro propostas na serra e nos rios da zona. Pedes aqui e confirmamos por WhatsApp o local, o horário e as condições.</p>
     <ul class="list">
       <li>
-        <!-- FOTO: substituir o conteúdo de .shot por <img src="assets/atividade-trilhos.jpg" width="1600" height="1000" loading="lazy" alt="descrição da fotografia"> -->
-        <div class="shot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Fotografia em breve</span></div>
-        <h3>Trilhos</h3><p>Caminhadas pela serra e pela Rota do Vouga, a pé, com a paisagem da região.</p><button class="btn go" type="button" data-act="Trilhos" aria-label="Reserve já: Trilhos">Reserve já</button>
+        <div class="shot"><img src="assets/atividade-trilhos.jpg" width="1024" height="1024" loading="lazy" alt="Duas pessoas a caminhar num trilho de serra entre flores" data-i18n-alt="trilhosAlt"></div>
+        <h3 data-i18n="trilhos">Trilhos</h3><p data-i18n="trilhosD">Caminhadas pela serra e pela Rota do Vouga, a pé, com a paisagem da região.</p><button class="btn go" type="button" data-act="trilhos" data-i18n="reserve">Reserve já</button>
       </li>
       <li>
-        <!-- FOTO: substituir o conteúdo de .shot por <img src="assets/atividade-kayak.jpg" width="1600" height="1000" loading="lazy" alt="descrição da fotografia"> -->
-        <div class="shot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Fotografia em breve</span></div>
-        <h3>Kayak</h3><p>Saídas de kayak em água da região, para fazer em grupo ou em família.</p><button class="btn go" type="button" data-act="Kayak" aria-label="Reserve já: Kayak">Reserve já</button>
+        <div class="shot"><img src="assets/atividade-kayak.jpg" width="1024" height="1024" loading="lazy" style="object-position:50% 62%" alt="Pessoa de kayak num rio entre árvores" data-i18n-alt="kayakAlt"></div>
+        <h3 data-i18n="kayak">Kayak</h3><p data-i18n="kayakD">Saídas de kayak em água da região, para fazer em grupo ou em família.</p><button class="btn go" type="button" data-act="kayak" data-i18n="reserve">Reserve já</button>
       </li>
       <li>
-        <!-- FOTO: substituir o conteúdo de .shot por <img src="assets/atividade-canyoning.jpg" width="1600" height="1000" loading="lazy" alt="descrição da fotografia"> -->
-        <div class="shot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Fotografia em breve</span></div>
-        <h3>Canyoning</h3><p>Descida de ribeiras e desfiladeiros nas serras da região, em grupo.</p><button class="btn go" type="button" data-act="Canyoning" aria-label="Reserve já: Canyoning">Reserve já</button>
+        <div class="shot"><img src="assets/atividade-canyoning.jpg" width="1024" height="1024" loading="lazy" alt="Grupo equipado a descer uma ribeira entre rochas" data-i18n-alt="canyoningAlt"></div>
+        <h3 data-i18n="canyoning">Canyoning</h3><p data-i18n="canyoningD">Descida de ribeiras e desfiladeiros nas serras da região, em grupo.</p><button class="btn go" type="button" data-act="canyoning" data-i18n="reserve">Reserve já</button>
       </li>
       <li>
-        <!-- FOTO: substituir o conteúdo de .shot por <img src="assets/atividade-buggie-utv.jpg" width="1600" height="1000" loading="lazy" alt="descrição da fotografia"> -->
-        <div class="shot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Fotografia em breve</span></div>
-        <h3>Passeio Buggie/UTV</h3><p>Passeios de buggie/UTV nas montanhas, por caminhos de terra da região.</p><button class="btn go" type="button" data-act="Passeio Buggie/UTV" aria-label="Reserve já: Passeio Buggie/UTV">Reserve já</button>
+        <div class="shot"><img src="assets/atividade-buggie-utv.jpg" width="1024" height="1024" loading="lazy" alt="Veículos UTV num caminho de terra ao fim do dia" data-i18n-alt="buggieAlt"></div>
+        <h3 data-i18n="buggie">Passeio Buggie/UTV</h3><p data-i18n="buggieD">Passeios de buggie/UTV nas montanhas, por caminhos de terra da região.</p><button class="btn go" type="button" data-act="buggie" data-i18n="reserve">Reserve já</button>
       </li>
     </ul>
-    <p class="note">Preços, locais e disponibilidade são confirmados por WhatsApp antes de qualquer reserva. O pedido não é uma reserva confirmada.</p>
+    <p class="note" data-i18n="actNote">Preços, locais e disponibilidade são confirmados por WhatsApp antes de qualquer reserva. O pedido não é uma reserva confirmada.</p>
+    <p class="note" data-i18n="illus">Imagens ilustrativas.</p>
   </div>
 </section>
 
 <section class="sec" id="localizacao">
   <div class="wrap">
-    <h2>Calvos, em Vouzela.</h2>
+    <h2 data-i18n="locTitle">Calvos, em Vouzela.</h2>
     <!-- DEPLOY STEP: confirmar a morada completa (rua, número e código postal) e acrescentá-la aqui e no rodapé -->
-    <p class="lead">A casa fica em Calvos, na freguesia de Fataunços, concelho de Vouzela, no distrito de Viseu. É uma zona de serras e vales do rio Vouga, a poucos minutos das Termas de São Pedro do Sul e da vila de Vouzela, com a Rota do Vouga e a ecopista do Vouga à mão para caminhar ou pedalar.</p>
+    <p class="lead" data-i18n="locLead">A casa fica em Calvos, na freguesia de Fataunços, concelho de Vouzela, no distrito de Viseu. É uma zona de serras e vales do rio Vouga, a poucos minutos das Termas de São Pedro do Sul e da vila de Vouzela, com a Rota do Vouga e a ecopista do Vouga à mão para caminhar ou pedalar.</p>
     <p class="note">GPS: 40.728654, -8.088529</p>
     <div class="btns">
-      <a class="btn go" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.728654%2C-8.088529" target="_blank" rel="noopener noreferrer">Como chegar</a>
-      <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=40.728654%2C-8.088529" target="_blank" rel="noopener noreferrer">Ver no mapa</a>
+      <a class="btn go" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.728654%2C-8.088529" target="_blank" rel="noopener noreferrer" data-i18n="directions">Como chegar</a>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=40.728654%2C-8.088529" target="_blank" rel="noopener noreferrer" data-i18n="map">Ver no mapa</a>
     </div>
   </div>
 </section>
 
 <section class="sec" id="reservar">
   <div class="wrap">
-    <h2>Tarifas e reserva direta.</h2>
-    <p class="lead">Falas connosco por WhatsApp, vemos as datas e confirmamos a estadia. Sem intermediários nem comissões.</p>
-    <ul class="rates" aria-label="Tarifas por noite, até 4 pessoas">
-      <li><span>Época Baixa · até 4 pessoas</span><b>90 € / noite</b></li>
-      <li><span>Época Média · até 4 pessoas</span><b>120 € / noite</b></li>
-      <li><span>Época Alta · até 4 pessoas</span><b>135 € / noite</b></li>
+    <h2 data-i18n="ratesTitle">Tarifas e reserva direta.</h2>
+    <p class="lead" data-i18n="ratesLead">Falas connosco por WhatsApp, vemos as datas e confirmamos a estadia. Sem intermediários nem comissões.</p>
+    <ul class="rates" aria-label="Tarifas por noite, até 4 pessoas" data-i18n-aria-label="ratesAria">
+      <li><span data-i18n="low">Época Baixa · até 4 pessoas</span><b data-i18n="p90">90 € / noite</b></li>
+      <li><span data-i18n="mid">Época Média · até 4 pessoas</span><b data-i18n="p120">120 € / noite</b></li>
+      <li><span data-i18n="high">Época Alta · até 4 pessoas</span><b data-i18n="p135">135 € / noite</b></li>
     </ul>
-    <p class="note">Tarifas fixas por época, por noite, para a casa inteira até 4 pessoas. A época das tuas datas é confirmada por WhatsApp. Cama de casal insuflável e berço para bebés disponíveis mediante pedido prévio. Reserva sujeita a confirmação.</p>
+    <p class="note" data-i18n="ratesNote">Tarifas fixas por época, por noite, para a casa inteira até 4 pessoas. A época das tuas datas é confirmada por WhatsApp. Cama de casal insuflável e berço para bebés disponíveis mediante pedido prévio. Reserva sujeita a confirmação.</p>
     <div class="btns">
-      <button class="btn go" type="button" data-stay>Fazer reserva</button>
+      <button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button>
       <a class="btn" href="https://wa.me/351967333926" target="_blank" rel="noopener noreferrer">WhatsApp +351 967 333 926</a>
     </div>
   </div>
@@ -327,11 +326,11 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <footer>
   <div class="wrap">
     <p><strong>AquaTurismo</strong>Calvos, Vouzela, Portugal</p>
-    <p><strong>Contacto</strong><a href="https://wa.me/351967333926" target="_blank" rel="noopener noreferrer">WhatsApp +351 967 333 926</a></p>
-    <p id="igFoot" hidden><strong>Instagram</strong><a target="_blank" rel="noopener noreferrer">Seguir no Instagram</a></p>
+    <p><strong data-i18n="contact">Contacto</strong><a href="https://wa.me/351967333926" target="_blank" rel="noopener noreferrer">WhatsApp +351 967 333 926</a></p>
+    <p id="igFoot" hidden><strong>Instagram</strong><a target="_blank" rel="noopener noreferrer" data-i18n="igFollow">Seguir no Instagram</a></p>
     <!-- DEPLOY STEP: antes de publicar, acrescentar o n.º de registo de Alojamento Local, a ligação ao Livro de Reclamações e a informação de privacidade -->
     <!-- DEPLOY STEP: confirmar o ano do copyright -->
-    <p class="copyr">© 2026 AquaTurismo. Todos os direitos reservados.</p>
+    <p class="copyr" data-i18n="copy">© 2026 AquaTurismo. Todos os direitos reservados.</p>
   </div>
 </footer>
 
@@ -339,17 +338,18 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
   <form id="form" novalidate>
     <h2 id="dTitle">Pedido de reserva</h2>
     <p id="dSub"></p>
-    <label>Nome<input id="nome" autocomplete="name" maxlength="80" placeholder="O teu nome"></label>
-    <div class="row" id="rowStay"><label>Check-in<input id="ent" type="date"></label><label>Check-out<input id="sai" type="date"></label></div>
-    <label id="rowDay" hidden>Data pretendida<input id="dia" type="date"></label>
-    <label id="rowGuests">Hóspedes<select id="hosp"><option value="1">1 hóspede</option><option value="2" selected>2 hóspedes</option><option value="3">3 hóspedes</option><option value="4">4 hóspedes</option></select></label>
-    <label id="rowPeople" hidden>Número de pessoas<input id="pess" type="number" min="1" max="30" value="2" inputmode="numeric"></label>
-    <label>Notas (opcional)<textarea id="nota" rows="3" maxlength="500"></textarea></label>
+    <label><span data-i18n="name">Nome</span><input id="nome" autocomplete="name" maxlength="80" placeholder="O teu nome" data-i18n-placeholder="namePh"></label>
+    <div class="row" id="rowStay"><label><span data-i18n="checkin">Check-in</span><input id="ent" type="date"></label><label><span data-i18n="checkout">Check-out</span><input id="sai" type="date"></label></div>
+    <label id="rowDay" hidden><span data-i18n="day">Data pretendida</span><input id="dia" type="date"></label>
+    <label id="rowGuests"><span data-i18n="guests">Hóspedes</span><select id="hosp"><option value="1" data-i18n="g1">1 hóspede</option><option value="2" selected data-i18n="g2">2 hóspedes</option><option value="3" data-i18n="g3">3 hóspedes</option><option value="4" data-i18n="g4">4 hóspedes</option></select></label>
+    <label id="rowPeople" hidden><span data-i18n="people">Número de pessoas</span><input id="pess" type="number" min="1" max="30" value="2" inputmode="numeric"></label>
+    <label><span data-i18n="notes">Notas (opcional)</span><textarea id="nota" rows="3" maxlength="500"></textarea></label>
     <p class="err" id="err" role="alert"></p>
-    <div class="acts"><button class="btn" id="cancel" type="button">Cancelar</button><button class="btn go" type="submit">Enviar por WhatsApp</button></div>
+    <div class="acts"><button class="btn" id="cancel" type="button" data-i18n="cancel">Cancelar</button><button class="btn go" type="submit" data-i18n="send">Enviar por WhatsApp</button></div>
   </form>
 </dialog>
 
+<script src="i18n.js"></script>
 <script>
 (function(){
 "use strict";
@@ -370,6 +370,26 @@ $("closeBtn").onclick=function(){panel.close()};
 each(".panel a",function(a){a.addEventListener("click",function(){panel.close()})});
 [panel,dlg].forEach(function(d){d.addEventListener("click",function(e){if(e.target===d)d.close()})});
 
+/* ---- Idioma: ?lang=xx, depois a escolha guardada, depois o navegador. O português é o texto do HTML. ---- */
+var LANG="pt",PT={};
+var ATTRS=["alt","aria-label","placeholder"];
+each("[data-i18n]",function(el){PT[el.dataset.i18n]=el.textContent});
+ATTRS.forEach(function(a){each("[data-i18n-"+a+"]",function(el){PT[el.getAttribute("data-i18n-"+a)]=el.getAttribute(a)})});
+var meta=document.querySelector('meta[name="description"]');
+PT.title=document.title;PT.desc=meta.content;
+function t(key){var d=LANG==="pt"?null:I18N[LANG];return d&&d[key]||PT[key]||I18N.pt[key]}
+function setLang(l){
+  LANG=l==="pt"||I18N[l]&&l!=="pt"?l:"pt";
+  document.documentElement.lang=LANG==="pt"?"pt-PT":LANG;
+  each("[data-i18n]",function(el){el.textContent=t(el.dataset.i18n)});
+  ATTRS.forEach(function(a){each("[data-i18n-"+a+"]",function(el){el.setAttribute(a,t(el.getAttribute("data-i18n-"+a)))})});
+  document.title=t("title");meta.content=t("desc");$("lang").value=LANG;
+}
+function saved(){try{return localStorage.getItem("lang")}catch(e){return null}}
+var wanted=[new URLSearchParams(location.search).get("lang"),saved()].concat([].slice.call(navigator.languages||[navigator.language||""]));
+setLang(wanted.map(function(l){return String(l||"").slice(0,2).toLowerCase()}).filter(function(l){return ["pt","en","fr","es","de"].indexOf(l)>-1})[0]||"en");
+$("lang").onchange=function(){setLang(this.value);try{localStorage.setItem("lang",LANG)}catch(e){}};
+
 /* ---- Formulário ---- */
 var act=""; // vazio = alojamento
 function iso(offsetDays){var d=new Date();d.setDate(d.getDate()+offsetDays);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)}
@@ -377,10 +397,10 @@ function nextDay(s){var d=new Date(s+"T00:00:00Z");d.setUTCDate(d.getUTCDate()+1
 function openDlg(name){
   panel.close();act=name||"";var stay=!act;
   $("form").reset();$("err").textContent="";
-  $("dTitle").textContent=stay?"Pedido de reserva de alojamento":"Pedido de atividade: "+act;
-  $("dSub").textContent=stay?"Preenche e abrimos o WhatsApp com a mensagem pronta a enviar.":"Indica os dados e abrimos o WhatsApp com o pedido. A atividade é confirmada por mensagem.";
+  $("dTitle").textContent=stay?t("dStay"):t("dAct")+t(act);
+  $("dSub").textContent=t(stay?"dStaySub":"dActSub");
   $("rowStay").hidden=$("rowGuests").hidden=!stay;$("rowDay").hidden=$("rowPeople").hidden=stay;
-  $("nota").placeholder=stay?"Animais, hora de chegada, cama insuflável, berço":"Idades, experiência, pedidos especiais";
+  $("nota").placeholder=t(stay?"notesStay":"notesAct");
   $("ent").min=$("dia").min=iso(0);$("sai").min=iso(1);
   dlg.showModal();
 }
@@ -389,24 +409,27 @@ each("[data-act]",function(b){b.addEventListener("click",function(){openDlg(b.da
 $("ent").onchange=function(){$("sai").min=this.value?nextDay(this.value):iso(1)};
 $("cancel").onclick=function(){dlg.close()};
 function fmt(d){return d.split("-").reverse().join("/")}
+// "Notas (opcional)" vai na mensagem só como "Notas"
+function line(key,value){return "\n"+t(key).replace(/\s*\(.*\)$/,"")+(LANG==="fr"?" : ":": ")+value}
 $("form").onsubmit=function(e){
   e.preventDefault();
-  var n=$("nome").value.trim(),t=$("nota").value.trim(),ent=$("ent").value,sai=$("sai").value,dia=$("dia").value,p=Number($("pess").value),err="",m;
-  if(!n)err="Indica o teu nome.";
+  var n=$("nome").value.trim(),notes=$("nota").value.trim(),ent=$("ent").value,sai=$("sai").value,dia=$("dia").value,p=Number($("pess").value),err="",m;
+  if(!n)err="eName";
   else if(!act){
-    if(!ent||!sai)err="Indica as datas de check-in e check-out.";
-    else if(ent<iso(0))err="O check-in não pode ser numa data passada.";
-    else if(sai<=ent)err="O check-out tem de ser depois do check-in.";
-    else m="Pedido de reserva de alojamento no AquaTurismo (Calvos, Vouzela).\nNome: "+n+"\nCheck-in: "+fmt(ent)+"\nCheck-out: "+fmt(sai)+"\nHóspedes: "+$("hosp").value;
+    if(!ent||!sai)err="eDates";
+    else if(ent<iso(0))err="ePastIn";
+    else if(sai<=ent)err="eOrder";
+    else m=t("mStay")+line("name",n)+line("checkin",fmt(ent))+line("checkout",fmt(sai))+line("guests",$("hosp").value);
   }else{
-    if(!dia)err="Indica a data pretendida.";
-    else if(dia<iso(0))err="A data não pode ser passada.";
-    else if(!Number.isInteger(p)||p<1||p>30)err="Indica o número de pessoas (1 a 30).";
-    else m="Pedido de reserva de atividade: "+act+"\nNome: "+n+"\nData pretendida: "+fmt(dia)+"\nNúmero de pessoas: "+p;
+    if(!dia)err="eDay";
+    else if(dia<iso(0))err="ePast";
+    else if(!Number.isInteger(p)||p<1||p>30)err="ePeople";
+    else m=t("mAct")+t(act)+line("name",n)+line("day",fmt(dia))+line("people",p);
   }
+  err=err&&t(err);
   $("err").textContent=err;
   if(err)return;
-  if(t)m+="\nNotas: "+t;
+  if(notes)m+=line("notes",notes);
   window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(m),"_blank","noopener,noreferrer");
   dlg.close();
 };
