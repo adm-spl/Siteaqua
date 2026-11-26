@@ -90,12 +90,11 @@ dialog::backdrop{background:rgba(63,86,66,.45)}
 .acts .btn{flex:1 1 140px}
 
 /* Herói */
-.hero-run{position:relative;height:160vh;height:160dvh}
-.stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;background:linear-gradient(to bottom,#a9c0d8 0%,#f1d3a8 46%,#a7b36a 62%,#5d8a47 100%)}
+.stage{position:relative;height:100vh;height:100dvh;overflow:hidden;background:linear-gradient(to bottom,#a9c0d8 0%,#f1d3a8 46%,#a7b36a 62%,#5d8a47 100%)}
 .stage>img,.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.stage>img{transform-origin:50% 55%}
-.stage video{opacity:0;transition:opacity .15s}
-.stage video.on{opacity:1}
+/* O vídeo aparece enquanto toca e desvanece no fim, voltando à fotografia */
+.stage video{opacity:0;transition:opacity 1s ease}
+.stage video.on{opacity:1;transition-duration:.2s}
 .copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
   padding:calc(env(safe-area-inset-top,0px) + 68px) var(--gutter) calc(env(safe-area-inset-bottom,0px) + 56px);
   /* sombra suave só ao centro, para o texto branco se ler sobre o céu e a pedra */
@@ -106,11 +105,6 @@ dialog::backdrop{background:rgba(63,86,66,.45)}
 .copy .btn{margin-top:clamp(18px,4vh,36px);min-height:52px;padding:.85em 2.4em;font-size:18px;color:#fff;background:rgba(24,26,25,.76);border-color:var(--amber);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .copy .btn:hover{color:#fff;border-color:var(--amber);background:rgba(24,26,25,.88)}
-.hint{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);translate:-50% 0;white-space:nowrap;padding:2px 12px;border-radius:99px;background:var(--white);font-size:13px}
-@media (max-width:720px),(orientation:portrait) and (max-width:1024px),(pointer:coarse) and (orientation:portrait),(pointer:coarse) and (max-height:560px),(prefers-reduced-motion:reduce){
-  .hero-run{height:auto}.stage{position:relative}.stage video,.hint{display:none}.stage>img{transform:none!important}
-}
-
 /* Secções */
 .sec{padding:clamp(64px,9vw,128px) var(--gutter);scroll-margin-top:24px}
 .wrap{max-width:1200px;margin:0 auto}
@@ -208,7 +202,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 </dialog>
 
 <main>
-<section class="hero-run" id="topo" aria-label="AquaTurismo">
+<section id="topo" aria-label="AquaTurismo">
   <div class="stage">
     <img id="poster" src="assets/hero-poster.jpg" width="1920" height="1080" fetchpriority="high" alt="Piscina, relvado, espigueiro e casa de pedra ao entardecer, em Calvos, Vouzela" data-i18n-alt="heroAlt">
     <video id="vid" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
@@ -217,7 +211,6 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
       <p data-i18n="heroSub">Casa de pedra com piscina em Calvos, Vouzela</p>
       <button class="btn" type="button" data-stay data-i18n="book">Fazer reserva</button>
     </div>
-    <div class="hint" id="hint" data-i18n="hint">desce para entrar</div>
   </div>
 </section>
 
@@ -443,35 +436,30 @@ if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduc
   each(".sec h2,.lead,.facts div,.gal figure,.list li,.rates",function(el){el.classList.add("rv");io.observe(el)});
 }
 
-/* ---- Botões claros depois do herói + vídeo comandado pelo scroll (só em ecrãs largos) ---- */
-var top=$("top"),run=$("topo"),vid=$("vid"),poster=$("poster"),hint=$("hint");
-var asked=false,zoom=false,pending=false;
-// 0 no topo da página, 1 quando o herói deixa de estar fixo
-function progress(){var s=run.firstElementChild,r=run.offsetHeight-s.offsetHeight;return r>0?Math.min(1,Math.max(0,scrollY/r)):0}
-function loadVideo(){
-  asked=true;
-  if(location.protocol==="file:"){zoom=true;return}
-  // Descarrega o ficheiro inteiro para poder saltar entre fotogramas sem esperas.
-  fetch("assets/hero-scrub.mp4").then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(b){vid.src=URL.createObjectURL(b);vid.load()}).catch(fail);
+/* ---- Botões do topo ficam claros depois do herói ---- */
+var top=$("top"),hero=$("topo");
+function head(){top.classList.toggle("past-hero",scrollY>hero.offsetHeight-80)}
+addEventListener("scroll",head,{passive:true});
+addEventListener("resize",head);
+head();
+
+/* ---- Animação do herói: toca uma vez e volta à fotografia ----
+   Fica só a fotografia com movimento reduzido, poupança de dados ou reprodução bloqueada. */
+var SPEED=1.25; // 6 s de vídeo em cerca de 4,8 s
+var vid=$("vid"),still=matchMedia("(prefers-reduced-motion: reduce)");
+if(!still.matches&&!(navigator.connection&&navigator.connection.saveData)){
+  // Ecrãs ao alto recebem a versão leve, recortada ao centro como a fotografia
+  vid.src=matchMedia("(max-aspect-ratio: 3/4)").matches?"assets/hero-mobile.mp4":"assets/hero-scrub.mp4";
+  vid.muted=true;
+  vid.defaultPlaybackRate=vid.playbackRate=SPEED;
+  vid.addEventListener("playing",function(){vid.classList.add("on")});
+  vid.addEventListener("ended",function(){vid.classList.remove("on")});
+  vid.addEventListener("error",function(){vid.classList.remove("on")});
+  matchMedia("(orientation: portrait)").addEventListener&&matchMedia("(orientation: portrait)").addEventListener("change",function(){vid.pause();vid.classList.remove("on")});
+  var playing=vid.play();
+  if(playing)playing.catch(function(){vid.removeAttribute("src");vid.load()});
+  still.addEventListener&&still.addEventListener("change",function(){if(still.matches){vid.pause();vid.classList.remove("on")}});
 }
-function fail(){zoom=true;vid.classList.remove("on");update()}
-function render(){
-  pending=false;
-  top.classList.toggle("past-hero",scrollY>run.offsetHeight-80);
-  if(getComputedStyle(vid).display==="none")return; // herói estático (ver CSS)
-  if(!asked)loadVideo();
-  var p=progress();
-  hint.style.opacity=p>.03?0:1;
-  if(zoom)poster.style.transform="scale("+(1+.25*p)+")";
-  else if(vid.readyState>=2&&!vid.seeking){var t=p*(vid.duration-.03);if(Math.abs(vid.currentTime-t)>.02)vid.currentTime=t}
-}
-function update(){if(!pending){pending=true;requestAnimationFrame(render)}}
-vid.addEventListener("loadeddata",function(){vid.classList.add("on");update()});
-vid.addEventListener("seeked",update);
-vid.addEventListener("error",fail);
-addEventListener("scroll",update,{passive:true});
-addEventListener("resize",update);
-update();
 })();
 </script>
 </body>
