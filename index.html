@@ -92,7 +92,7 @@ dialog::backdrop{background:rgba(63,86,66,.45)}
 /* Herói */
 .stage{position:relative;height:100vh;height:100dvh;overflow:hidden;background:linear-gradient(to bottom,#a9c0d8 0%,#f1d3a8 46%,#a7b36a 62%,#5d8a47 100%)}
 .stage>img,.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-/* O vídeo aparece enquanto toca e desvanece no fim, voltando à fotografia */
+/* O vídeo aparece quando começa a tocar; se o ciclo parar, desvanece para a fotografia */
 .stage video{opacity:0;transition:opacity 1s ease}
 .stage video.on{opacity:1;transition-duration:.2s}
 .copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
@@ -443,23 +443,60 @@ addEventListener("scroll",head,{passive:true});
 addEventListener("resize",head);
 head();
 
-/* ---- Animação do herói: toca uma vez e volta à fotografia ----
+/* ---- Animação do herói: ciclo contínuo ----
    Fica só a fotografia com movimento reduzido, poupança de dados ou reprodução bloqueada. */
-var SPEED=1.25; // 6 s de vídeo em cerca de 4,8 s
+// O vídeo já aproxima e volta a afastar. O último fotograma coincide com o fotograma 40 (a 30 por segundo),
+// por isso a repetição recomeça aí e não no início. Rever LOOP_AT se o vídeo mudar.
+var LOOP_AT=40/30;
 var vid=$("vid"),still=matchMedia("(prefers-reduced-motion: reduce)");
-if(!still.matches&&!(navigator.connection&&navigator.connection.saveData)){
+var stopHero=null; // desliga o ciclo em curso
+function startHero(){
+  if(stopHero||still.matches||(navigator.connection&&navigator.connection.saveData))return;
+  var seen=true,off=[],io=null;
+  function on(el,type,fn){el.addEventListener(type,fn);off.push(function(){el.removeEventListener(type,fn)})}
+  function active(){return !document.hidden&&seen}
+  function stop(){
+    off.forEach(function(f){f()});if(io)io.disconnect();
+    vid.pause();vid.classList.remove("on");stopHero=null;
+  }
+  // Autoplay recusado (por exemplo, poupança de bateria): fica a fotografia
+  function blocked(){stop();vid.removeAttribute("src");vid.load()}
+  function forward(){
+    var p=vid.play();
+    // Uma pausa nossa também rejeita play() (AbortError); só a recusa do navegador desliga o ciclo
+    if(p)p.catch(function(e){if(stopHero===stop&&e.name==="NotAllowedError")blocked()});
+  }
+  function again(){vid.currentTime=LOOP_AT;run()}
+  function run(){
+    if(!active())return;
+    // play() num vídeo terminado voltaria ao início
+    if(vid.ended)vid.currentTime=LOOP_AT;
+    forward();
+  }
+  function wake(){if(active())run();else vid.pause()}
+  stopHero=stop;
+  on(vid,"playing",function(){if(!active())vid.pause();else vid.classList.add("on")});
+  on(vid,"ended",again);
+  on(vid,"error",stop);
+  on(document,"visibilitychange",wake);
+  // Fora do ecrã o ciclo pára, para poupar bateria
+  if("IntersectionObserver" in window){
+    io=new IntersectionObserver(function(entries){
+      var v=entries[entries.length-1].isIntersecting;
+      if(v!==seen){seen=v;wake()}
+    });
+    io.observe(vid);
+  }
   // Ecrãs ao alto recebem a versão leve, recortada ao centro como a fotografia
   vid.src=matchMedia("(max-aspect-ratio: 3/4)").matches?"assets/hero-mobile.mp4":"assets/hero-scrub.mp4";
   vid.muted=true;
-  vid.defaultPlaybackRate=vid.playbackRate=SPEED;
-  vid.addEventListener("playing",function(){vid.classList.add("on")});
-  vid.addEventListener("ended",function(){vid.classList.remove("on")});
-  vid.addEventListener("error",function(){vid.classList.remove("on")});
-  matchMedia("(orientation: portrait)").addEventListener&&matchMedia("(orientation: portrait)").addEventListener("change",function(){vid.pause();vid.classList.remove("on")});
-  var playing=vid.play();
-  if(playing)playing.catch(function(){vid.removeAttribute("src");vid.load()});
-  still.addEventListener&&still.addEventListener("change",function(){if(still.matches){vid.pause();vid.classList.remove("on")}});
+  run();
 }
+function endHero(){if(stopHero)stopHero()}
+var turned=matchMedia("(orientation: portrait)");
+turned.addEventListener&&turned.addEventListener("change",endHero);
+still.addEventListener&&still.addEventListener("change",function(){if(still.matches)endHero();else startHero()});
+startHero();
 })();
 </script>
 </body>
