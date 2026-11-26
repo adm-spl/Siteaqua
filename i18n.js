@@ -20,7 +20,7 @@ pt:{
 },
 en:{
   lang:"Language",
-  heroSub:"Stone house with a pool in Calvos, Vouzela",
+  heroSub:"Private villa 4 min from the thermal spa, São Pedro do Sul",
   book:"Book your stay",
   navHouse:"The House",
   navOutdoor:"Garden & Pool",
@@ -141,7 +141,7 @@ en:{
 },
 fr:{
   lang:"Langue",
-  heroSub:"Maison en pierre avec piscine à Calvos, Vouzela",
+  heroSub:"Villa privée à 4 min des thermes, São Pedro do Sul",
   book:"Réserver",
   navHouse:"La maison",
   navOutdoor:"Extérieur et piscine",
@@ -262,7 +262,7 @@ fr:{
 },
 es:{
   lang:"Idioma",
-  heroSub:"Casa de piedra con piscina en Calvos, Vouzela",
+  heroSub:"Villa privada a 4 min de las termas, São Pedro do Sul",
   book:"Reservar",
   navHouse:"La casa",
   navOutdoor:"Exterior y piscina",
@@ -383,7 +383,7 @@ es:{
 },
 de:{
   lang:"Sprache",
-  heroSub:"Steinhaus mit Pool in Calvos, Vouzela",
+  heroSub:"Private Villa, 4 Min. von den Thermen in São Pedro do Sul",
   book:"Aufenthalt buchen",
   navHouse:"Das Haus",
   navOutdoor:"Garten & Pool",

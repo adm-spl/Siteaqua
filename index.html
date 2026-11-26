@@ -99,8 +99,12 @@ dialog::backdrop{background:rgba(63,86,66,.45)}
   padding:calc(env(safe-area-inset-top,0px) + 68px) var(--gutter) calc(env(safe-area-inset-bottom,0px) + 56px);
   /* sombra suave só ao centro, para o texto branco se ler sobre o céu e a pedra */
   background:radial-gradient(ellipse 75% 42% at 50% 50%,rgba(20,28,20,.46),rgba(20,28,20,.24) 50%,rgba(20,28,20,0) 100%)}
-.copy h1{color:#fff;font:600 clamp(46px,min(10vw,18vh),144px)/1.05 var(--serif);letter-spacing:-.015em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
-.copy p{max-width:34ch;margin-top:6px;color:#fff;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.65)}
+/* Lettering: o PNG tem margens transparentes largas; o recorte é feito aqui, sem alterar o ficheiro */
+.copy h1{position:relative;flex:none;width:min(100%,760px,100vh);aspect-ratio:1481/304;overflow:hidden;
+  /* halo claro para o verde escuro se destacar sobre a água e a relva */
+  filter:drop-shadow(0 0 2px rgba(255,248,232,.75)) drop-shadow(0 0 14px rgba(255,244,220,.5))}
+.copy h1 img{position:absolute;left:-1.418%;top:-125.66%;width:103.714%;max-width:none;height:auto}
+.copy p{max-width:34ch;margin-top:14px;text-wrap:balance;color:#fff;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.65)}
 /* Única ação em vidro escuro com borda âmbar */
 .copy .btn{margin-top:clamp(18px,4vh,36px);min-height:52px;padding:.85em 2.4em;font-size:18px;color:#fff;background:rgba(24,26,25,.76);border-color:var(--amber);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
@@ -207,8 +211,8 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
     <img id="poster" src="assets/hero-poster.jpg" width="1920" height="1080" fetchpriority="high" alt="Piscina, relvado, espigueiro e casa de pedra ao entardecer, em Calvos, Vouzela" data-i18n-alt="heroAlt">
     <video id="vid" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
     <div class="copy">
-      <h1>AquaTurismo</h1>
-      <p data-i18n="heroSub">Casa de pedra com piscina em Calvos, Vouzela</p>
+      <h1><img src="assets/logo-aquaturismo.png" width="1536" height="1024" alt="AquaTurismo"></h1>
+      <p data-i18n="heroSub">Villa Privativa a 4 min das Termas, São Pedro do Sul</p>
       <button class="btn" type="button" data-stay data-i18n="book">Fazer reserva</button>
     </div>
   </div>
@@ -310,7 +314,6 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
     <p class="note" data-i18n="ratesNote">Tarifas fixas por época, por noite, para a casa inteira até 4 pessoas. A época das tuas datas é confirmada por WhatsApp. Cama de casal insuflável e berço para bebés disponíveis mediante pedido prévio. Reserva sujeita a confirmação.</p>
     <div class="btns">
       <button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button>
-      <a class="btn" href="https://wa.me/351967333926" target="_blank" rel="noopener noreferrer">WhatsApp +351 967 333 926</a>
     </div>
   </div>
 </section>
