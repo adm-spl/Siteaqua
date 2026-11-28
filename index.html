@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Casa com piscina privada em Vouzela | AquaTurismo</title>
-<meta name="description" content="Casa de pedra com piscina e jardim em Calvos, Vouzela, perto das Termas de São Pedro do Sul. Ideal para 2, até 4 pessoas. Reserva direta por WhatsApp.">
+<title>Villa privativa com piscina em Calvos | AquaTurismo</title>
+<meta name="description" content="Villa privativa com piscina e jardim em Calvos, a 5 min das Termas de São Pedro do Sul. Ideal para 2, até 4 pessoas. Reserva direta por WhatsApp.">
 <meta name="theme-color" content="#f8f4e8">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:title" content="AquaTurismo | Calvos, Vouzela">
-<meta property="og:description" content="Casa de pedra com piscina exterior e jardim relvado em Calvos, Vouzela. Reserva direta por WhatsApp.">
+<meta property="og:description" content="Villa privativa com piscina em Calvos, a 5 min das Termas de São Pedro do Sul.">
 <!-- DEPLOY STEP: confirmar que o domínio final é aquaturismo.com (canonical, og:*, JSON-LD, robots.txt e sitemap.xml) -->
 <link rel="canonical" href="https://aquaturismo.com/">
 <meta property="og:url" content="https://aquaturismo.com/">
@@ -18,7 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"AquaTurismo","url":"https://aquaturismo.com/","image":"https://aquaturismo.com/assets/partilha.jpg","telephone":"+351967333926","checkinTime":"16:00","checkoutTime":"11:00","petsAllowed":true,"address":{"@type":"PostalAddress","addressLocality":"Calvos, Fataunços, Vouzela","addressRegion":"Viseu","addressCountry":"PT"},"geo":{"@type":"GeoCoordinates","latitude":40.728654,"longitude":-8.088529},"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Piscina exterior","value":true},{"@type":"LocationFeatureSpecification","name":"Jardim vedado","value":true},{"@type":"LocationFeatureSpecification","name":"Churrasqueira","value":true},{"@type":"LocationFeatureSpecification","name":"Ar condicionado","value":true},{"@type":"LocationFeatureSpecification","name":"Wi-Fi gratuito","value":true},{"@type":"LocationFeatureSpecification","name":"Estacionamento gratuito","value":true},{"@type":"LocationFeatureSpecification","name":"Cozinha equipada","value":true}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"AquaTurismo","url":"https://aquaturismo.com/","image":"https://aquaturismo.com/assets/partilha.jpg","telephone":"+351967333926","checkinTime":"15:00","checkoutTime":"11:00","petsAllowed":true,"address":{"@type":"PostalAddress","addressLocality":"Calvos, Fataunços, Vouzela","addressRegion":"Viseu","addressCountry":"PT"},"geo":{"@type":"GeoCoordinates","latitude":40.728654,"longitude":-8.088529},"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Piscina exterior","value":true},{"@type":"LocationFeatureSpecification","name":"Jardim vedado","value":true},{"@type":"LocationFeatureSpecification","name":"Churrasqueira","value":true},{"@type":"LocationFeatureSpecification","name":"Ar condicionado","value":true},{"@type":"LocationFeatureSpecification","name":"Wi-Fi gratuito","value":true},{"@type":"LocationFeatureSpecification","name":"Estacionamento gratuito","value":true},{"@type":"LocationFeatureSpecification","name":"Cozinha equipada","value":true}]}</script>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces.woff2" crossorigin>
 <link rel="preload" as="image" href="assets/hero-poster.jpg">
 <style>
@@ -136,16 +136,19 @@ dialog::backdrop{background:rgba(63,86,66,.45)}
 .list li{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:12px 12px 22px;background:var(--white);border:1px solid var(--line);border-radius:18px}
 .list li>:not(.shot){margin-inline:10px}
 .list p{color:var(--soft)}
-.list .btn{margin-top:auto}
 .shot{position:relative;align-self:stretch;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--sage)}
 .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .note{max-width:64ch;margin-top:24px;font-size:15px;color:var(--soft)}
 .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 
-.rates{max-width:560px;margin:32px 0 0;padding:4px 24px;list-style:none;background:var(--white);border:1px solid var(--line);border-radius:16px}
-.rates li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;padding:16px 0}
-.rates li+li{border-top:1px solid var(--line)}
-.rates b{color:var(--gold);font:600 24px var(--serif);white-space:nowrap}
+.price{margin-top:28px;color:var(--gold);font:600 clamp(32px,4vw,44px)/1.2 var(--serif)}
+.faq{max-width:64ch;margin-top:32px;padding:0 20px;background:var(--white);border:1px solid var(--line);border-radius:16px}
+.faq details+details{border-top:1px solid var(--line)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:10px 0;cursor:pointer;font-weight:600;color:var(--green-dark);list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 26px/1 var(--sans)}
+.faq details[open] summary::after{content:"−"}
+.faq p{padding-bottom:16px;color:var(--soft)}
 
 footer{padding:40px var(--gutter) calc(env(safe-area-inset-bottom,0px) + 32px)}
 .facts.plain dd{margin:0}
@@ -180,8 +183,8 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
   .rv{opacity:0;translate:0 28px}
   .rv{transition:opacity .6s ease,translate .7s cubic-bezier(.2,.7,.2,1)}
   .rv.in{opacity:1;translate:0 0}
-  .list .btn,.btns .btn{transition:translate .2s,background .2s,border-color .2s}
-  .list .btn:hover,.btns .btn:hover{translate:0 -2px}
+  .btns .btn{transition:translate .2s,background .2s,border-color .2s}
+  .btns .btn:hover{translate:0 -2px}
   @supports (animation-timeline:view()){
     .ph img{animation:drift linear both;animation-timeline:view()}
     @keyframes drift{from{scale:1.12;translate:0 -4%}to{scale:1.02;translate:0 .8%}}
@@ -221,7 +224,8 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
     <a href="#atividades" data-i18n="navActivities">Atividades na Região</a>
     <a href="#localizacao" data-i18n="navLocation">Localização</a>
     <a href="#condicoes" data-i18n="navTerms">Condições</a>
-    <a href="#reservar" data-i18n="navRates">Tarifas</a>
+    <a href="#perguntas" data-i18n="navFaq">Perguntas frequentes</a>
+    <a href="#reservar" data-i18n="navRates">Preço</a>
     <button type="button" data-stay data-i18n="book">Fazer reserva</button>
   </nav>
 </dialog>
@@ -229,7 +233,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <main>
 <section id="topo" aria-label="AquaTurismo">
   <div class="stage">
-    <img id="poster" src="assets/hero-poster.jpg" width="1920" height="1080" fetchpriority="high" alt="Piscina, relvado, espigueiro e casa de pedra ao entardecer, em Calvos, Vouzela" data-i18n-alt="heroAlt">
+    <img id="poster" src="assets/hero-poster.jpg" width="1920" height="1080" fetchpriority="high" alt="Piscina, relvado, canastro e casa de pedra ao entardecer, em Calvos, Vouzela" data-i18n-alt="heroAlt">
     <video id="vid" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
     <div class="copy">
       <h1><img src="assets/logo-aquaturismo.webp" width="1481" height="304" alt="AquaTurismo"></h1>
@@ -241,7 +245,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <section class="sec" id="casa">
   <div class="wrap">
     <h2 data-i18n="houseTitle">Uma casa de pedra, com piscina e jardim só para quem fica.</h2>
-    <p class="lead" data-i18n="houseLead">O AquaTurismo é uma casa de férias em Calvos, no concelho de Vouzela. Paredes de pedra, um espigueiro tradicional, relvado à volta da piscina e um espaço exterior vedado, num sossego rural a poucos minutos das Termas de São Pedro do Sul.</p>
+    <p class="lead" data-i18n="houseLead">O AquaTurismo é uma villa privativa em Calvos, a 5 min das Termas de São Pedro do Sul. Paredes de pedra, um canastro tradicional, relvado à volta da piscina e um espaço exterior vedado, no sossego do campo.</p>
     <dl class="facts">
       <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 15V5.5a2 2 0 0 1 4 0M15 15V5.5a2 2 0 0 1 4 0M8 8h7M8 12h7"/><path d="M3 18c1.5-1.4 3-1.4 4.500 0s3 1.4 4.500 0 3-1.4 4.500 0 3 1.4 4.500 0"/></svg><span data-i18n="f1t">Piscina exterior</span></dt><dd data-i18n="f1d">Junto ao relvado, dentro do espaço vedado.</dd></div>
       <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V7l2-3 2 3v13zM15 20V7l2-3 2 3v13zM3 10h2M9 10h6M19 10h2M3 16h2M9 16h6M19 16h2"/></svg><span data-i18n="f2t">Exterior vedado</span></dt><dd data-i18n="f2d">Muros à volta do jardim, para famílias e animais.</dd></div>
@@ -258,15 +262,14 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 
 <section class="sec" id="exterior">
   <div class="wrap">
-    <h2 data-i18n="outTitle">A piscina, o relvado e o espigueiro.</h2>
-    <p class="lead" data-i18n="outLead">O exterior é o centro da estadia: a piscina rodeada de relva, a casa de pedra com o espigueiro, a ramada de sombra e as noites com a água iluminada.</p>
+    <h2 data-i18n="outTitle">A piscina, o relvado e o canastro.</h2>
+    <p class="lead" data-i18n="outLead">O exterior é o centro da estadia: a piscina rodeada de relva, a casa de pedra com o canastro, a ramada de sombra e as noites com a água iluminada.</p>
     <div class="gal">
       <figure class="set" style="--span:7;--ratio:16/10"><div class="ph"><img src="assets/exterior-relvado.jpg" width="1600" height="899" loading="lazy" alt="Relvado e piscina vistos do jardim vedado, com a casa de pedra ao fundo" data-i18n-alt="a1"></div><figcaption data-i18n="c1">O jardim relvado e a piscina, entre muros brancos.</figcaption></figure>
-      <figure style="--span:5;--small:4/5"><div class="ph"><img src="assets/piscina-noite.jpg" width="900" height="1602" loading="lazy" style="object-position:50% 68%" alt="Piscina iluminada à noite, com o espigueiro e a casa de pedra" data-i18n-alt="a2"></div><figcaption data-i18n="c2">A piscina à noite.</figcaption></figure>
+      <figure style="--span:5;--small:4/5"><div class="ph"><img src="assets/piscina-noite.jpg" width="900" height="1602" loading="lazy" style="object-position:50% 68%" alt="Piscina iluminada à noite, com o canastro e a casa de pedra" data-i18n-alt="a2"></div><figcaption data-i18n="c2">A piscina à noite.</figcaption></figure>
       <figure style="--span:5"><div class="ph"><img src="assets/ramada.jpg" width="1600" height="899" loading="lazy" alt="Ramada com folhagem ao longo da parede de pedra da casa" data-i18n-alt="a3"></div><figcaption data-i18n="c3">A ramada ao longo da casa, com sombra de folhagem.</figcaption></figure>
-      <figure class="set" style="--span:7;--ratio:16/10"><div class="ph"><img src="assets/casa-espigueiro.jpg" width="1600" height="899" loading="lazy" alt="Casa de pedra, espigueiro e piscina ao pôr do sol" data-i18n-alt="a4"></div><figcaption data-i18n="c4">A casa de pedra, o espigueiro e a piscina ao pôr do sol.</figcaption></figure>
+      <figure class="set" style="--span:7;--ratio:16/10"><div class="ph"><img src="assets/casa-espigueiro.jpg" width="1600" height="899" loading="lazy" alt="Casa de pedra, canastro e piscina ao pôr do sol" data-i18n-alt="a4"></div><figcaption data-i18n="c4">A casa de pedra, o canastro e a piscina ao pôr do sol.</figcaption></figure>
     </div>
-    <div class="btns"><button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button></div>
   </div>
 </section>
 
@@ -281,7 +284,6 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
       <figure class="set" style="--span:6;--ratio:4/5;--small:4/5"><div class="ph"><img src="assets/mesa-janela.jpg" width="900" height="1602" loading="lazy" style="object-position:50% 60%" alt="Mesa posta junto a uma janela de pedra virada para a ramada" data-i18n-alt="a8"></div><figcaption data-i18n="c8">Mesa junto à janela, virada para a ramada.</figcaption></figure>
       <figure class="set" style="--span:6;--ratio:4/5;--small:4/5"><div class="ph"><img src="assets/casa-de-banho.jpg" width="1000" height="1338" loading="lazy" alt="Casa de banho com lavatório suspenso, espelho e duche com porta de vidro" data-i18n-alt="a9"></div><figcaption data-i18n="c9">Casa de banho com duche.</figcaption></figure>
     </div>
-    <div class="btns"><button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button></div>
   </div>
 </section>
 
@@ -292,22 +294,23 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
     <ul class="list">
       <li>
         <div class="shot"><img src="assets/atividade-trilhos.webp" width="960" height="960" loading="lazy" alt="Duas pessoas a caminhar num trilho de serra entre flores" data-i18n-alt="trilhosAlt"></div>
-        <h3 data-i18n="trilhos">Trilhos</h3><p data-i18n="trilhosD">Caminhadas pela serra e pela Rota do Vouga, a pé, com a paisagem da região.</p><button class="btn go" type="button" data-act="trilhos" data-i18n="reserve">Reserve já</button>
+        <h3 data-i18n="trilhos">Trilhos</h3><p data-i18n="trilhosD">Caminhadas pela serra e pela Rota do Vouga, a pé, com a paisagem da região.</p>
       </li>
       <li>
         <div class="shot"><img src="assets/atividade-kayak.webp" width="960" height="960" loading="lazy" style="object-position:50% 62%" alt="Pessoa de kayak num rio entre árvores" data-i18n-alt="kayakAlt"></div>
-        <h3 data-i18n="kayak">Kayak</h3><p data-i18n="kayakD">Saídas de kayak em água da região, para fazer em grupo ou em família.</p><button class="btn go" type="button" data-act="kayak" data-i18n="reserve">Reserve já</button>
+        <h3 data-i18n="kayak">Kayak</h3><p data-i18n="kayakD">Saídas de kayak em água da região, para fazer em grupo ou em família.</p>
       </li>
       <li>
         <div class="shot"><img src="assets/atividade-canyoning.webp" width="960" height="960" loading="lazy" alt="Grupo equipado a descer uma ribeira entre rochas" data-i18n-alt="canyoningAlt"></div>
-        <h3 data-i18n="canyoning">Canyoning</h3><p data-i18n="canyoningD">Descida de ribeiras e desfiladeiros nas serras da região, em grupo.</p><button class="btn go" type="button" data-act="canyoning" data-i18n="reserve">Reserve já</button>
+        <h3 data-i18n="canyoning">Canyoning</h3><p data-i18n="canyoningD">Descida de ribeiras e desfiladeiros nas serras da região, em grupo.</p>
       </li>
       <li>
         <div class="shot"><img src="assets/atividade-buggie-utv.webp" width="960" height="960" loading="lazy" alt="Veículos UTV num caminho de terra ao fim do dia" data-i18n-alt="buggieAlt"></div>
-        <h3 data-i18n="buggie">Passeio Buggie/UTV</h3><p data-i18n="buggieD">Passeios de buggie/UTV nas montanhas, por caminhos de terra da região.</p><button class="btn go" type="button" data-act="buggie" data-i18n="reserve">Reserve já</button>
+        <h3 data-i18n="buggie">Passeio Buggie/UTV</h3><p data-i18n="buggieD">Passeios de buggie/UTV nas montanhas, por caminhos de terra da região.</p>
       </li>
     </ul>
     <p class="note" data-i18n="actNote">Preços, locais e disponibilidade são confirmados por WhatsApp antes de qualquer reserva. O pedido não é uma reserva confirmada.</p>
+    <div class="btns"><button class="btn go" type="button" data-act="actAny" data-i18n="actAsk">Perguntar sobre atividades</button></div>
     <p class="note" data-i18n="illus">Imagens ilustrativas.</p>
   </div>
 </section>
@@ -316,7 +319,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
   <div class="wrap">
     <h2 data-i18n="locTitle">Calvos, em Vouzela.</h2>
     <!-- DEPLOY STEP: confirmar a morada completa (rua, número e código postal) e acrescentá-la aqui e no rodapé -->
-    <p class="lead" data-i18n="locLead">A casa fica em Calvos, na freguesia de Fataunços, concelho de Vouzela, no distrito de Viseu. É uma zona de serras e vales do rio Vouga, a poucos minutos das Termas de São Pedro do Sul e da vila de Vouzela, com a Rota do Vouga e a ecopista do Vouga à mão para caminhar ou pedalar.</p>
+    <p class="lead" data-i18n="locLead">A casa fica em Calvos, na freguesia de Fataunços, concelho de Vouzela, no distrito de Viseu. É uma zona de serras e vales do rio Vouga, a 5 min das Termas de São Pedro do Sul e da vila de Vouzela, com a Rota do Vouga e a ecopista do Vouga à mão para caminhar ou pedalar.</p>
     <p class="note">GPS: 40.728654, -8.088529</p>
     <div class="btns">
       <a class="btn go" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.728654%2C-8.088529" target="_blank" rel="noopener noreferrer" data-i18n="directions">Como chegar</a>
@@ -329,11 +332,10 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
   <div class="wrap">
     <h2 data-i18n="condTitle">Antes de reservar.</h2>
     <dl class="facts plain">
-      <div><dt data-i18n="cdTimeT">Chegada e saída</dt><dd data-i18n="cdTimeD">Entrada a partir das 16h00 e saída até às 11h00. Outros horários só com acordo prévio.</dd></div>
-      <div><dt data-i18n="cdMinT">Estadia e lotação</dt><dd data-i18n="cdMinD">Mínimo de 2 noites. Ideal para 2 pessoas, no máximo 4, incluindo crianças. Visitas só com autorização prévia.</dd></div>
-      <div><dt data-i18n="cdPayT">Reserva e pagamento</dt><dd data-i18n="cdPayD">A reserva fica confirmada com um sinal de 50%. O restante é pago até 7 dias antes da chegada. Reservas feitas a menos de 7 dias são pagas na totalidade.</dd></div>
-      <div><dt data-i18n="cdCancelT">Cancelamento</dt><dd data-i18n="cdCancelD">Até 30 dias antes da chegada, devolvemos o que foi pago. Entre 29 e 8 dias, o sinal não é devolvido. A 7 dias ou menos, em caso de não comparência ou de saída antecipada, não há devolução. Se formos nós a cancelar, devolvemos tudo.</dd></div>
-      <div><dt data-i18n="cdDepositT">Caução</dt><dd data-i18n="cdDepositD">150 €, pagos até à chegada e devolvidos até 7 dias após a saída, descontando eventuais danos.</dd></div>
+      <div><dt data-i18n="cdTimeT">Chegada e saída</dt><dd data-i18n="cdTimeD">Entrada a partir das 15h00 e saída até às 11h00. Outros horários só com acordo prévio.</dd></div>
+      <div><dt data-i18n="cdMinT">Estadia e lotação</dt><dd data-i18n="cdMinD">Mínimo de 2 noites. Ideal para 2 pessoas, no máximo 4, incluindo crianças.</dd></div>
+      <div><dt data-i18n="cdPayT">Reserva e pagamento</dt><dd data-i18n="cdPayD">A reserva fica confirmada com um sinal de 50%. O restante é pago até 15 dias antes da chegada. Reservas feitas com menos de 15 dias são pagas na totalidade.</dd></div>
+      <div><dt data-i18n="cdCancelT">Cancelamento</dt><dd data-i18n="cdCancelD">Até 30 dias antes da chegada, devolvemos o que foi pago. Entre 29 e 15 dias, o sinal não é devolvido. A menos de 15 dias, em caso de não comparência ou de saída antecipada, não há devolução. Se formos nós a cancelar, devolvemos tudo.</dd></div>
       <div><dt data-i18n="cdPetsT">Animais</dt><dd data-i18n="cdPetsD">Avisa-nos ao reservar. Os donos são responsáveis por limpeza e danos. Não podem entrar na piscina nem ficar sozinhos dentro de casa.</dd></div>
       <div><dt data-i18n="cdPoolT">Piscina</dt><dd data-i18n="cdPoolD">Não há nadador-salvador. As crianças têm de estar sempre acompanhadas por um adulto.</dd></div>
       <div><dt data-i18n="cdRulesT">Regras da casa</dt><dd data-i18n="cdRulesD">Não se fuma no interior. Não são permitidas festas nem eventos. Silêncio entre as 22h00 e as 08h00.</dd></div>
@@ -341,16 +343,26 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
   </div>
 </section>
 
+<section class="sec" id="perguntas">
+  <div class="wrap">
+    <h2 data-i18n="faqTitle">Perguntas frequentes.</h2>
+    <div class="faq">
+      <details><summary data-i18n="faq1q">A piscina é partilhada?</summary><p data-i18n="faq1a">Não. É só para quem fica na casa.</p></details>
+      <details><summary data-i18n="faq2q">Quantas pessoas cabem?</summary><p data-i18n="faq2a">Até 4, com a cama de casal e o sofá-cama. A casa é ideal para 2.</p></details>
+      <details><summary data-i18n="faq3q">Posso levar o meu animal?</summary><p data-i18n="faq3a">Sim. Avisa-nos ao reservar. Não pode entrar na piscina nem ficar sozinho dentro de casa.</p></details>
+      <details><summary data-i18n="faq4q">Onde estaciono?</summary><p data-i18n="faq4a">Dentro ou fora da quinta, de graça. Há lugares mais do que suficientes.</p></details>
+      <details><summary data-i18n="faq5q">Qual é a estadia mínima?</summary><p data-i18n="faq5a">2 noites.</p></details>
+      <details><summary data-i18n="faq6q">A piscina tem vigilância?</summary><p data-i18n="faq6a">Não há nadador-salvador. As crianças têm de estar sempre acompanhadas por um adulto.</p></details>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="reservar">
   <div class="wrap">
-    <h2 data-i18n="ratesTitle">Tarifas e reserva direta.</h2>
+    <h2 data-i18n="ratesTitle">Preço e reserva direta.</h2>
     <p class="lead" data-i18n="ratesLead">Falas connosco por WhatsApp, vemos as datas e confirmamos a estadia. Sem intermediários nem comissões.</p>
-    <ul class="rates" aria-label="Tarifas por noite, até 4 pessoas" data-i18n-aria-label="ratesAria">
-      <li><span data-i18n="low">Época Baixa · até 4 pessoas</span><b data-i18n="p90">90 € / noite</b></li>
-      <li><span data-i18n="mid">Época Média · até 4 pessoas</span><b data-i18n="p120">120 € / noite</b></li>
-      <li><span data-i18n="high">Época Alta · até 4 pessoas</span><b data-i18n="p135">135 € / noite</b></li>
-    </ul>
-    <p class="note" data-i18n="ratesNote">Preço por noite para a casa inteira: ideal para 2 pessoas, até 4. Estadia mínima de 2 noites. A época das tuas datas é confirmada por WhatsApp. Reserva sujeita a confirmação.</p>
+    <p class="price" data-i18n="from">desde 90 € por noite</p>
+    <p class="note" data-i18n="ratesNote">Casa inteira: ideal para 2 pessoas, até 4. Estadia mínima de 2 noites. O valor das tuas datas é confirmado por WhatsApp. Reserva sujeita a confirmação.</p>
     <div class="btns">
       <button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button>
     </div>
@@ -373,7 +385,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
   </div>
 </footer>
 
-<div class="bar" id="bar" hidden><span data-i18n="from">desde 90 € / noite</span><button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button></div>
+<div class="bar" id="bar" hidden><span data-i18n="from">desde 90 € por noite</span><button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button></div>
 
 <dialog class="lb" id="lb" aria-label="Fotografia ampliada" data-i18n-aria-label="lbLabel">
   <button class="ib" id="lbClose" type="button" aria-label="Fechar" data-i18n-aria-label="close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -516,7 +528,7 @@ if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduc
     var i=0;
     entries.forEach(function(e){if(!e.isIntersecting)return;e.target.style.transitionDelay=Math.min(i++,3)*80+"ms";e.target.classList.add("in");io.unobserve(e.target)});
   },{rootMargin:"0px 0px -6% 0px"});
-  each(".sec h2,.lead,.facts div,.gal figure,.list li,.rates",function(el){el.classList.add("rv");io.observe(el)});
+  each(".sec h2,.lead,.facts div,.gal figure,.list li,.price,.faq",function(el){el.classList.add("rv");io.observe(el)});
 }
 
 /* ---- Botões do topo ficam claros depois do herói ---- */
