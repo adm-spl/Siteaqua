@@ -3,17 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AquaTurismo | Casa de férias com piscina em Calvos, Vouzela</title>
-<meta name="description" content="Casa de férias em pedra com piscina exterior, jardim relvado e espaço vedado em Calvos, Vouzela, a poucos minutos das Termas de São Pedro do Sul. Reserva direta por WhatsApp.">
+<title>Casa com piscina privada em Vouzela | AquaTurismo</title>
+<meta name="description" content="Casa de pedra com piscina e jardim em Calvos, Vouzela, perto das Termas de São Pedro do Sul. Ideal para 2, até 4 pessoas. Reserva direta por WhatsApp.">
 <meta name="theme-color" content="#f8f4e8">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:title" content="AquaTurismo | Calvos, Vouzela">
 <meta property="og:description" content="Casa de pedra com piscina exterior e jardim relvado em Calvos, Vouzela. Reserva direta por WhatsApp.">
-<!-- DEPLOY STEP: preencher og:url e og:image com o endereço final do site -->
-<meta property="og:url" content="">
-<meta property="og:image" content="">
-<link rel="icon" href="data:,">
+<!-- DEPLOY STEP: confirmar que o domínio final é aquaturismo.com (canonical, og:*, JSON-LD, robots.txt e sitemap.xml) -->
+<link rel="canonical" href="https://aquaturismo.com/">
+<meta property="og:url" content="https://aquaturismo.com/">
+<meta property="og:image" content="https://aquaturismo.com/assets/partilha.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"AquaTurismo","url":"https://aquaturismo.com/","image":"https://aquaturismo.com/assets/partilha.jpg","telephone":"+351967333926","checkinTime":"16:00","checkoutTime":"11:00","petsAllowed":true,"address":{"@type":"PostalAddress","addressLocality":"Calvos, Fataunços, Vouzela","addressRegion":"Viseu","addressCountry":"PT"},"geo":{"@type":"GeoCoordinates","latitude":40.728654,"longitude":-8.088529},"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Piscina exterior","value":true},{"@type":"LocationFeatureSpecification","name":"Jardim vedado","value":true},{"@type":"LocationFeatureSpecification","name":"Churrasqueira","value":true},{"@type":"LocationFeatureSpecification","name":"Ar condicionado","value":true},{"@type":"LocationFeatureSpecification","name":"Wi-Fi gratuito","value":true},{"@type":"LocationFeatureSpecification","name":"Estacionamento gratuito","value":true},{"@type":"LocationFeatureSpecification","name":"Cozinha equipada","value":true}]}</script>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces.woff2" crossorigin>
 <link rel="preload" as="image" href="assets/hero-poster.jpg">
 <style>
@@ -97,9 +102,13 @@ dialog::backdrop{background:rgba(63,86,66,.45)}
 .stage video.on{opacity:1;transition-duration:.2s}
 .copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
   padding:calc(env(safe-area-inset-top,0px) + 68px) var(--gutter) calc(env(safe-area-inset-bottom,0px) + 56px)}
-/* Lettering: o PNG tem margens transparentes largas; o recorte é feito aqui, sem alterar o ficheiro */
-.copy h1{position:relative;flex:none;width:min(100%,760px,100vh);aspect-ratio:1481/304;overflow:hidden}
-.copy h1 img{position:absolute;left:-1.418%;top:-125.66%;width:103.714%;max-width:none;height:auto}
+/* Véu escuro e suave ao centro, com um halo claro a contornar o lettering; os cantos ficam limpos */
+.copy::before{content:"";position:absolute;left:50%;top:50%;width:min(130vw,1200px);height:min(70vh,600px);transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(closest-side,rgba(10,16,13,.58),rgba(10,16,13,.4) 50%,rgba(10,16,13,.14) 78%,transparent)}
+.copy>*{position:relative}
+/* Lettering: versão recortada do PNG original */
+.copy h1{flex:none;width:min(100%,760px,100vh)}
+.copy h1 img{width:100%;filter:drop-shadow(0 0 2px rgba(255,248,225,.95)) drop-shadow(0 0 10px rgba(255,246,215,.8)) drop-shadow(0 0 26px rgba(255,240,200,.55))}
 /* Única ação em vidro escuro com borda âmbar */
 .copy .btn{margin-top:clamp(18px,4vh,36px);min-height:52px;padding:.85em 2.4em;font-size:18px;color:#fff;background:rgba(24,26,25,.76);border-color:var(--amber);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
@@ -139,6 +148,21 @@ dialog::backdrop{background:rgba(63,86,66,.45)}
 .rates b{color:var(--gold);font:600 24px var(--serif);white-space:nowrap}
 
 footer{padding:40px var(--gutter) calc(env(safe-area-inset-bottom,0px) + 32px)}
+.facts.plain dd{margin:0}
+.gal .ph{cursor:zoom-in}
+/* Fotografia ampliada */
+.lb{width:100%;height:100%;max-width:100%;max-height:100%;background:rgba(14,18,16,.94)}
+.lb[open]{display:grid;place-items:center}
+.lb img{max-width:calc(100vw - 24px);max-height:calc(100vh - 96px);max-height:calc(100dvh - 96px);border-radius:8px}
+.lb .ib{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px}
+/* Barra de reserva no telemóvel */
+.bar{display:none}
+@media (max-width:820px){
+  .bar{position:fixed;inset:auto 0 0;z-index:9;display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 10px);background:var(--white);border-top:1px solid var(--line);box-shadow:0 -4px 18px rgba(31,36,33,.12);
+    font-weight:600;font-size:15px;line-height:1.3}
+  .bar .btn{flex:none;padding-inline:1.3em}
+}
 footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding-top:32px;border-top:1px solid var(--line)}
 footer p{font-size:15px;color:var(--soft)}
 footer strong{display:block;color:var(--ink)}
@@ -196,6 +220,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
     <a href="#interiores" data-i18n="navIndoor">Interiores</a>
     <a href="#atividades" data-i18n="navActivities">Atividades na Região</a>
     <a href="#localizacao" data-i18n="navLocation">Localização</a>
+    <a href="#condicoes" data-i18n="navTerms">Condições</a>
     <a href="#reservar" data-i18n="navRates">Tarifas</a>
     <button type="button" data-stay data-i18n="book">Fazer reserva</button>
   </nav>
@@ -207,7 +232,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
     <img id="poster" src="assets/hero-poster.jpg" width="1920" height="1080" fetchpriority="high" alt="Piscina, relvado, espigueiro e casa de pedra ao entardecer, em Calvos, Vouzela" data-i18n-alt="heroAlt">
     <video id="vid" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
     <div class="copy">
-      <h1><img src="assets/logo-aquaturismo.png" width="1536" height="1024" alt="AquaTurismo"></h1>
+      <h1><img src="assets/logo-aquaturismo.webp" width="1481" height="304" alt="AquaTurismo"></h1>
       <button class="btn" type="button" data-stay data-i18n="book">Fazer reserva</button>
     </div>
   </div>
@@ -224,8 +249,9 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
       <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="8" rx="2"/><path d="M6.500 9h11M8 15c0 2-1 3-2.500 3.500M12 15v5M16 15c0 2 1 3 2.500 3.500"/></svg><span data-i18n="f4t">Ar condicionado</span></dt><dd data-i18n="f4d">Na sala e no quarto.</dd></div>
       <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.500a13 13 0 0 1 18 0M6 13a8.500 8.500 0 0 1 12 0M9 16.500a4.200 4.200 0 0 1 6 0M12 20h.01"/></svg><span data-i18n="f5t">Wi-Fi gratuito</span></dt><dd data-i18n="f5d">Incluído na estadia.</dd></div>
       <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c-2.6 0-5 3.4-5 5.600 0 1.3 1 2 2.200 2 1 0 1.800-.6 2.800-.6s1.800.6 2.800.6c1.2 0 2.200-.7 2.200-2 0-2.200-2.400-5.600-5-5.600z"/><circle cx="4.500" cy="11" r="1.7"/><circle cx="9" cy="6" r="1.7"/><circle cx="15" cy="6" r="1.7"/><circle cx="19.500" cy="11" r="1.7"/></svg><span data-i18n="f6t">Animais aceites</span></dt><dd data-i18n="f6d">Aceitamos animais de estimação.</dd></div>
-      <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19V6M3 15h18v4M21 15v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg><span data-i18n="f7t">Cama de casal insuflável</span></dt><dd data-i18n="f7d">Disponível sob pedido prévio.</dd></div>
-      <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v16M20 4v16M4 8h16M4 16h16M8 8v8M12 8v8M16 8v8"/></svg><span data-i18n="f8t">Berço para bebés</span></dt><dd data-i18n="f7d">Disponível sob pedido prévio.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3M3 13a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v5H3zM6 18v2M18 18v2"/></svg><span data-i18n="f7t">Sofá-cama</span></dt><dd data-i18n="f7d">Na sala. A casa é ideal para 2 pessoas e tem condições para 4.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v16M20 4v16M4 8h16M4 16h16M8 8v8M12 8v8M16 8v8"/></svg><span data-i18n="f8t">Berço para bebés</span></dt><dd data-i18n="f8d">Disponível sob pedido prévio.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M10 17V7h3a3 3 0 0 1 0 6h-3"/></svg><span data-i18n="f9t">Estacionamento gratuito</span></dt><dd data-i18n="f9d">Dentro e fora da quinta, com lugares mais do que suficientes.</dd></div>
     </dl>
   </div>
 </section>
@@ -240,13 +266,14 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
       <figure style="--span:5"><div class="ph"><img src="assets/ramada.jpg" width="1600" height="899" loading="lazy" alt="Ramada com folhagem ao longo da parede de pedra da casa" data-i18n-alt="a3"></div><figcaption data-i18n="c3">A ramada ao longo da casa, com sombra de folhagem.</figcaption></figure>
       <figure class="set" style="--span:7;--ratio:16/10"><div class="ph"><img src="assets/casa-espigueiro.jpg" width="1600" height="899" loading="lazy" alt="Casa de pedra, espigueiro e piscina ao pôr do sol" data-i18n-alt="a4"></div><figcaption data-i18n="c4">A casa de pedra, o espigueiro e a piscina ao pôr do sol.</figcaption></figure>
     </div>
+    <div class="btns"><button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button></div>
   </div>
 </section>
 
 <section class="sec" id="interiores">
   <div class="wrap">
     <h2 data-i18n="inTitle">Dentro, a pedra mantém-se à vista.</h2>
-    <p class="lead" data-i18n="inLead">Sala com cozinha equipada, quarto com cama de casal e casa de banho com duche. A sala e o quarto têm ar condicionado. Disponibilizamos cama de casal insuflável e berço para bebés, mediante pedido prévio.</p>
+    <p class="lead" data-i18n="inLead">Sala com cozinha equipada e sofá-cama, quarto com cama de casal e casa de banho com duche. A sala e o quarto têm ar condicionado. A casa é ideal para 2 pessoas e acomoda até 4. Berço para bebés mediante pedido prévio.</p>
     <div class="gal">
       <figure class="set" style="--span:8;--ratio:16/10"><div class="ph"><img src="assets/sala-pedra.jpg" width="1600" height="899" loading="lazy" alt="Sala com parede de pedra, televisão, cadeiras e ar condicionado" data-i18n-alt="a5"></div><figcaption data-i18n="c5">Sala com parede de pedra e ar condicionado.</figcaption></figure>
       <figure class="tall" style="--span:4;--small:4/5"><div class="ph"><img src="assets/cozinha-sala.jpg" width="1000" height="1338" loading="lazy" style="object-position:50% 75%" alt="Cozinha equipada e zona de estar com sofá e mesa de centro" data-i18n-alt="a6"></div><figcaption data-i18n="c6">Cozinha equipada e zona de estar.</figcaption></figure>
@@ -254,6 +281,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
       <figure class="set" style="--span:6;--ratio:4/5;--small:4/5"><div class="ph"><img src="assets/mesa-janela.jpg" width="900" height="1602" loading="lazy" style="object-position:50% 60%" alt="Mesa posta junto a uma janela de pedra virada para a ramada" data-i18n-alt="a8"></div><figcaption data-i18n="c8">Mesa junto à janela, virada para a ramada.</figcaption></figure>
       <figure class="set" style="--span:6;--ratio:4/5;--small:4/5"><div class="ph"><img src="assets/casa-de-banho.jpg" width="1000" height="1338" loading="lazy" alt="Casa de banho com lavatório suspenso, espelho e duche com porta de vidro" data-i18n-alt="a9"></div><figcaption data-i18n="c9">Casa de banho com duche.</figcaption></figure>
     </div>
+    <div class="btns"><button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button></div>
   </div>
 </section>
 
@@ -263,19 +291,19 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
     <p class="lead" data-i18n="actLead">Quatro propostas na serra e nos rios da zona. Pedes aqui e confirmamos por WhatsApp o local, o horário e as condições.</p>
     <ul class="list">
       <li>
-        <div class="shot"><img src="assets/atividade-trilhos.jpg" width="1024" height="1024" loading="lazy" alt="Duas pessoas a caminhar num trilho de serra entre flores" data-i18n-alt="trilhosAlt"></div>
+        <div class="shot"><img src="assets/atividade-trilhos.webp" width="960" height="960" loading="lazy" alt="Duas pessoas a caminhar num trilho de serra entre flores" data-i18n-alt="trilhosAlt"></div>
         <h3 data-i18n="trilhos">Trilhos</h3><p data-i18n="trilhosD">Caminhadas pela serra e pela Rota do Vouga, a pé, com a paisagem da região.</p><button class="btn go" type="button" data-act="trilhos" data-i18n="reserve">Reserve já</button>
       </li>
       <li>
-        <div class="shot"><img src="assets/atividade-kayak.jpg" width="1024" height="1024" loading="lazy" style="object-position:50% 62%" alt="Pessoa de kayak num rio entre árvores" data-i18n-alt="kayakAlt"></div>
+        <div class="shot"><img src="assets/atividade-kayak.webp" width="960" height="960" loading="lazy" style="object-position:50% 62%" alt="Pessoa de kayak num rio entre árvores" data-i18n-alt="kayakAlt"></div>
         <h3 data-i18n="kayak">Kayak</h3><p data-i18n="kayakD">Saídas de kayak em água da região, para fazer em grupo ou em família.</p><button class="btn go" type="button" data-act="kayak" data-i18n="reserve">Reserve já</button>
       </li>
       <li>
-        <div class="shot"><img src="assets/atividade-canyoning.jpg" width="1024" height="1024" loading="lazy" alt="Grupo equipado a descer uma ribeira entre rochas" data-i18n-alt="canyoningAlt"></div>
+        <div class="shot"><img src="assets/atividade-canyoning.webp" width="960" height="960" loading="lazy" alt="Grupo equipado a descer uma ribeira entre rochas" data-i18n-alt="canyoningAlt"></div>
         <h3 data-i18n="canyoning">Canyoning</h3><p data-i18n="canyoningD">Descida de ribeiras e desfiladeiros nas serras da região, em grupo.</p><button class="btn go" type="button" data-act="canyoning" data-i18n="reserve">Reserve já</button>
       </li>
       <li>
-        <div class="shot"><img src="assets/atividade-buggie-utv.jpg" width="1024" height="1024" loading="lazy" alt="Veículos UTV num caminho de terra ao fim do dia" data-i18n-alt="buggieAlt"></div>
+        <div class="shot"><img src="assets/atividade-buggie-utv.webp" width="960" height="960" loading="lazy" alt="Veículos UTV num caminho de terra ao fim do dia" data-i18n-alt="buggieAlt"></div>
         <h3 data-i18n="buggie">Passeio Buggie/UTV</h3><p data-i18n="buggieD">Passeios de buggie/UTV nas montanhas, por caminhos de terra da região.</p><button class="btn go" type="button" data-act="buggie" data-i18n="reserve">Reserve já</button>
       </li>
     </ul>
@@ -297,6 +325,22 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
   </div>
 </section>
 
+<section class="sec" id="condicoes">
+  <div class="wrap">
+    <h2 data-i18n="condTitle">Antes de reservar.</h2>
+    <dl class="facts plain">
+      <div><dt data-i18n="cdTimeT">Chegada e saída</dt><dd data-i18n="cdTimeD">Entrada a partir das 16h00 e saída até às 11h00. Outros horários só com acordo prévio.</dd></div>
+      <div><dt data-i18n="cdMinT">Estadia e lotação</dt><dd data-i18n="cdMinD">Mínimo de 2 noites. Ideal para 2 pessoas, no máximo 4, incluindo crianças. Visitas só com autorização prévia.</dd></div>
+      <div><dt data-i18n="cdPayT">Reserva e pagamento</dt><dd data-i18n="cdPayD">A reserva fica confirmada com um sinal de 50%. O restante é pago até 7 dias antes da chegada. Reservas feitas a menos de 7 dias são pagas na totalidade.</dd></div>
+      <div><dt data-i18n="cdCancelT">Cancelamento</dt><dd data-i18n="cdCancelD">Até 30 dias antes da chegada, devolvemos o que foi pago. Entre 29 e 8 dias, o sinal não é devolvido. A 7 dias ou menos, em caso de não comparência ou de saída antecipada, não há devolução. Se formos nós a cancelar, devolvemos tudo.</dd></div>
+      <div><dt data-i18n="cdDepositT">Caução</dt><dd data-i18n="cdDepositD">150 €, pagos até à chegada e devolvidos até 7 dias após a saída, descontando eventuais danos.</dd></div>
+      <div><dt data-i18n="cdPetsT">Animais</dt><dd data-i18n="cdPetsD">Avisa-nos ao reservar. Os donos são responsáveis por limpeza e danos. Não podem entrar na piscina nem ficar sozinhos dentro de casa.</dd></div>
+      <div><dt data-i18n="cdPoolT">Piscina</dt><dd data-i18n="cdPoolD">Não há nadador-salvador. As crianças têm de estar sempre acompanhadas por um adulto.</dd></div>
+      <div><dt data-i18n="cdRulesT">Regras da casa</dt><dd data-i18n="cdRulesD">Não se fuma no interior. Não são permitidas festas nem eventos. Silêncio entre as 22h00 e as 08h00.</dd></div>
+    </dl>
+  </div>
+</section>
+
 <section class="sec" id="reservar">
   <div class="wrap">
     <h2 data-i18n="ratesTitle">Tarifas e reserva direta.</h2>
@@ -306,10 +350,11 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
       <li><span data-i18n="mid">Época Média · até 4 pessoas</span><b data-i18n="p120">120 € / noite</b></li>
       <li><span data-i18n="high">Época Alta · até 4 pessoas</span><b data-i18n="p135">135 € / noite</b></li>
     </ul>
-    <p class="note" data-i18n="ratesNote">Tarifas fixas por época, por noite, para a casa inteira até 4 pessoas. A época das tuas datas é confirmada por WhatsApp. Cama de casal insuflável e berço para bebés disponíveis mediante pedido prévio. Reserva sujeita a confirmação.</p>
+    <p class="note" data-i18n="ratesNote">Preço por noite para a casa inteira: ideal para 2 pessoas, até 4. Estadia mínima de 2 noites. A época das tuas datas é confirmada por WhatsApp. Reserva sujeita a confirmação.</p>
     <div class="btns">
       <button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button>
     </div>
+    <p class="note al" hidden><span data-i18n="alLabel">Registo de Alojamento Local n.º</span> <b></b></p>
   </div>
 </section>
 </main>
@@ -319,11 +364,21 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
     <p><strong>AquaTurismo</strong>Calvos, Vouzela, Portugal</p>
     <p><strong data-i18n="contact">Contacto</strong><a href="https://wa.me/351967333926" target="_blank" rel="noopener noreferrer">WhatsApp +351 967 333 926</a></p>
     <p id="igFoot" hidden><strong>Instagram</strong><a target="_blank" rel="noopener noreferrer" data-i18n="igFollow">Seguir no Instagram</a></p>
-    <!-- DEPLOY STEP: antes de publicar, acrescentar o n.º de registo de Alojamento Local, a ligação ao Livro de Reclamações e a informação de privacidade -->
+    <p><strong data-i18n="info">Informações</strong><a href="#condicoes" data-i18n="navTerms">Condições</a><br><a href="privacidade.html" data-i18n="privacy">Privacidade</a><br><a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener noreferrer" lang="pt">Livro de Reclamações</a></p>
+    <!-- DEPLOY STEP: antes de publicar, preencher AL_NUMBER e OWNER no script (ficam escondidos enquanto vazios) e completar privacidade.html -->
+    <p class="al" hidden><strong data-i18n="alLabel">Registo de Alojamento Local n.º</strong><b></b></p>
+    <p id="owner" hidden></p>
     <!-- DEPLOY STEP: confirmar o ano do copyright -->
     <p class="copyr" data-i18n="copy">© 2026 AquaTurismo. Todos os direitos reservados.</p>
   </div>
 </footer>
+
+<div class="bar" id="bar" hidden><span data-i18n="from">desde 90 € / noite</span><button class="btn go" type="button" data-stay data-i18n="book">Fazer reserva</button></div>
+
+<dialog class="lb" id="lb" aria-label="Fotografia ampliada" data-i18n-aria-label="lbLabel">
+  <button class="ib" id="lbClose" type="button" aria-label="Fechar" data-i18n-aria-label="close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <img id="lbImg" alt="">
+</dialog>
 
 <dialog class="form" id="dlg" aria-labelledby="dTitle">
   <form id="form" novalidate>
@@ -346,6 +401,9 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 "use strict";
 /* ---- Configuração fácil de editar ---- */
 var WHATSAPP="351967333926";
+var AL_NUMBER=""; // N.º de registo de Alojamento Local. Vazio = escondido.
+var OWNER=""; // Identificação legal, ex.: "Nome ou firma · NIF 000000000 · Morada · email". Vazio = escondido.
+var MIN_NIGHTS=2;
 var INSTAGRAM_URL=""; // Colar aqui o endereço da página oficial quando existir. Vazio = ícone e rodapé escondidos, sem erro 404.
 
 var $=function(i){return document.getElementById(i)};
@@ -354,12 +412,16 @@ function each(sel,fn){document.querySelectorAll(sel).forEach(fn)}
 /* ---- Instagram ---- */
 if(INSTAGRAM_URL){$("ig").href=$("igFoot").querySelector("a").href=INSTAGRAM_URL;$("ig").hidden=$("igFoot").hidden=false}
 
+/* ---- Dados legais ---- */
+if(AL_NUMBER)each(".al",function(el){el.querySelector("b").textContent=AL_NUMBER;el.hidden=false});
+if(OWNER){$("owner").textContent=OWNER;$("owner").hidden=false}
+
 /* ---- Menu (o <dialog> trata do foco e da tecla Escape) ---- */
 var panel=$("panel"),dlg=$("dlg");
 $("menuBtn").onclick=function(){panel.showModal()};
 $("closeBtn").onclick=function(){panel.close()};
 each(".panel a",function(a){a.addEventListener("click",function(){panel.close()})});
-[panel,dlg].forEach(function(d){d.addEventListener("click",function(e){if(e.target===d)d.close()})});
+[panel,dlg,$("lb")].forEach(function(d){d.addEventListener("click",function(e){if(e.target===d)d.close()})});
 
 /* ---- Idioma: ?lang=xx, depois a escolha guardada, depois o navegador. O português é o texto do HTML. ---- */
 var LANG="pt",PT={};
@@ -384,7 +446,7 @@ $("lang").onchange=function(){setLang(this.value);try{localStorage.setItem("lang
 /* ---- Formulário ---- */
 var act=""; // vazio = alojamento
 function iso(offsetDays){var d=new Date();d.setDate(d.getDate()+offsetDays);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)}
-function nextDay(s){var d=new Date(s+"T00:00:00Z");d.setUTCDate(d.getUTCDate()+1);return d.toISOString().slice(0,10)}
+function addDays(s,n){var d=new Date(s+"T00:00:00Z");d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)}
 function openDlg(name){
   panel.close();act=name||"";var stay=!act;
   $("form").reset();$("err").textContent="";
@@ -392,12 +454,12 @@ function openDlg(name){
   $("dSub").textContent=t(stay?"dStaySub":"dActSub");
   $("rowStay").hidden=$("rowGuests").hidden=!stay;$("rowDay").hidden=$("rowPeople").hidden=stay;
   $("nota").placeholder=t(stay?"notesStay":"notesAct");
-  $("ent").min=$("dia").min=iso(0);$("sai").min=iso(1);
+  $("ent").min=$("dia").min=iso(0);$("sai").min=iso(MIN_NIGHTS);
   dlg.showModal();
 }
 each("[data-stay]",function(b){b.addEventListener("click",function(){openDlg()})});
 each("[data-act]",function(b){b.addEventListener("click",function(){openDlg(b.dataset.act)})});
-$("ent").onchange=function(){$("sai").min=this.value?nextDay(this.value):iso(1)};
+$("ent").onchange=function(){$("sai").min=this.value?addDays(this.value,MIN_NIGHTS):iso(MIN_NIGHTS)};
 $("cancel").onclick=function(){dlg.close()};
 function fmt(d){return d.split("-").reverse().join("/")}
 // "Notas (opcional)" vai na mensagem só como "Notas"
@@ -410,6 +472,7 @@ $("form").onsubmit=function(e){
     if(!ent||!sai)err="eDates";
     else if(ent<iso(0))err="ePastIn";
     else if(sai<=ent)err="eOrder";
+    else if(sai<addDays(ent,MIN_NIGHTS))err="eMin";
     else m=t("mStay")+line("name",n)+line("checkin",fmt(ent))+line("checkout",fmt(sai))+line("guests",$("hosp").value);
   }else{
     if(!dia)err="eDay";
@@ -424,6 +487,28 @@ $("form").onsubmit=function(e){
   window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(m),"_blank","noopener,noreferrer");
   dlg.close();
 };
+
+/* ---- Ampliar fotografias ---- */
+each(".gal .ph",function(ph){
+  var img=ph.querySelector("img");
+  ph.tabIndex=0;ph.setAttribute("role","button");
+  function open(){$("lbImg").src=img.currentSrc||img.src;$("lbImg").alt=img.alt;ph.setAttribute("aria-haspopup","dialog");$("lb").showModal()}
+  ph.addEventListener("click",open);
+  ph.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}});
+  // O nome do botão é a descrição da fotografia, no idioma ativo
+  function name(){ph.setAttribute("aria-label",img.alt)}
+  name();$("lang").addEventListener("change",name);
+});
+$("lbClose").onclick=function(){$("lb").close()};
+
+/* ---- Barra de reserva: entre o herói e as tarifas ---- */
+function bar(){
+  var rates=$("reservar").getBoundingClientRect().top;
+  $("bar").hidden=!(scrollY>$("topo").offsetHeight-80&&rates>innerHeight*.75);
+}
+addEventListener("scroll",bar,{passive:true});
+addEventListener("resize",bar);
+bar();
 
 /* ---- Revelações ao rolar (sem suporte ou com movimento reduzido, fica tudo visível) ---- */
 if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
@@ -486,7 +571,7 @@ function endHero(){if(stopHero)stopHero()}
 var turned=matchMedia("(orientation: portrait)");
 turned.addEventListener&&turned.addEventListener("change",endHero);
 still.addEventListener&&still.addEventListener("change",function(){if(still.matches)endHero();else startHero()});
-startHero();
+if(document.readyState==="complete")startHero();else addEventListener("load",startHero);
 })();
 </script>
 </body>
